@@ -14,12 +14,34 @@
 </template>
 
 <script>
+import { db } from "../router/index.js";
 export default {
+  data() {
+    return {
+      studentData: this.$q.localStorage.getItem('studentData'),
+      scoreData : []
+    }
+  },
   methods: {
+    loadScore(){
+      db.collection("reviewScore").doc(this.studentData.studentId).get().then(data=>{
+        if(!data.exists){
+          console.log('test2');
+          db.collection("reviewScore").doc(this.studentData.studentId).set({
+            score : [0,0,0,0,0,0,0,0,0]
+          })
+        } else {
+          this.scoreData = data.data().score
+        }
+      })
+    },
     startBtn() {
       this.$router.push("/review");
     }
-  }
+  },
+  mounted () {
+    this.loadScore();
+  },
 };
 </script>
 

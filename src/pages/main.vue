@@ -2,6 +2,8 @@
   <div>
     <div class="mainbox absolute-center">
       <div class="absolute-center relative-position">
+        {{studentData.name}} {{studentData.surname}}
+        <br>
         คะแนนรวม {{totalScore}}
         <div class="row">
          <div class="col-12 q-ma-sm" v-for= "i in 8" :key="i">

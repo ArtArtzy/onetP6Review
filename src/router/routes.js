@@ -1,12 +1,19 @@
+const routes = [{
+  path: '/',
+  component: () => import('pages/login.vue'),
+  name: "login"
+},
+{
+  path: '/main',
+  component: () => import('pages/main.vue'),
+  name: "main"
+},
+{
+  path: '/review',
+  component: () => import('pages/review.vue'),
+  name: "review"
+},
 
-const routes = [
-  {
-    path: '/',
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
-  }
 ]
 
 // Always leave this as last one

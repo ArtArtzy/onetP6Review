@@ -4,7 +4,14 @@
     <div v-if="mode==2" class="mainBox absolute-center">
       <div>คะแนนปัจจุบัน {{totalScore}}</div>
       <div>คะแนนทั้งหมด {{totalAllScore}}</div>
-
+      <div class="barlinear row">
+        <div class="col-12">
+          <q-linear-progress stripe style="height: 10px" :value="totalScore/(star3*10)" />
+        </div>
+        <div class="col-3" align="right">{{star1*10}}</div>
+        <div class="col-3" align="right">{{star2*10}}</div>
+        <div class="col-6" align="right">{{star3*10}}</div>
+      </div>
       <!-- โจทย์แบบ 1  -->
       <div v-if="this.questionList[questionNo-1].type == 1" class="row justify-center">
         <!-- คำถาม -->
@@ -113,7 +120,6 @@
 
       <!-- โจทย์แบบ 3 -->
       <div v-if="this.questionList[questionNo-1].type == 3">
-       
         <!-- คำถาม -->
         <div
           class="questionzone bg-orange-1 text-center q-pa-md"
@@ -201,10 +207,9 @@
       </div>
     </div>
 
-
     <!-- summary -->
     <div v-if="mode==3">
-       <div>คะแนนปัจจุบัน {{totalScore}}</div>
+      <div>คะแนนปัจจุบัน {{totalScore}}</div>
       <div>คะแนนทั้งหมด {{totalAllScore}}</div>
       <q-knob
         :min="0"
@@ -218,83 +223,148 @@
         class="q-ma-md"
       />
       <div class="q-pa-md" style="max-width: 550px">
-        <q-list bordered class="rounded-borders" v-for="i in 5" :key="i" >
-      
-  
-          <q-expansion-item switch-toggle-side expand-separator 
-          :icon="userAnswer[i-1].answer?'fas fa-check' : 'fas fa-times'"  :label="questionList[i-1].question">
-     
+        <q-list bordered class="rounded-borders" v-for="i in 5" :key="i">
+          <q-expansion-item
+            switch-toggle-side
+            expand-separator
+            :icon="userAnswer[i-1].answer?'fas fa-check' : 'fas fa-times'"
+            :label="questionList[i-1].question"
+          >
             <q-card>
               <q-card-section>
-                <div v-if="questionList[i-1].type ==1">
-                  <div>{{questionList[i-1].choice1}}</div>
-                  <div>{{questionList[i-1].choice2}}</div>
-                  <div>{{questionList[i-1].choice3}}</div>
-                  <div>{{questionList[i-1].choice4}}</div>
-                </div>
+                <!-- รูปภาพกรณี 2 -->
                 <div v-if="questionList[i-1].type ==2">
-                  <div><img :src="questionList[i-1].questionURL" style="width:80%" ></div>
-                   <div>{{questionList[i-1].choice1}}</div>
-                  <div>{{questionList[i-1].choice2}}</div>
-                  <div>{{questionList[i-1].choice3}}</div>
-                  <div>{{questionList[i-1].choice4}}</div>
+                  <img :src="questionList[i-1].questionURL" style="width:80%" />
                 </div>
+                <!-- แสดงคำตอบในกรณี 1 และ 2 -->
+                <div v-if="questionList[i-1].type !=3 ">
+                  <div v-if="userAnswer[i-1].answer">
+                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=1}">
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==1" />
+                      {{questionList[i-1].choice1}}
+                    </div>
+                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=2}">
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==2" />
+                      {{questionList[i-1].choice2}}
+                    </div>
+                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=3}">
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==3" />
+                      {{questionList[i-1].choice3}}
+                    </div>
+                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=4}">
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==4" />
+                      {{questionList[i-1].choice4}}
+                    </div>
+                  </div>
+                  <div v-else>
+                    <div
+                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=1 && userAnswer[i-1].userAnswer != 1}"
+                    >
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==1" />
+                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==1" />
+                      {{questionList[i-1].choice1}}
+                    </div>
+                    <div
+                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=2 && userAnswer[i-1].userAnswer != 2}"
+                    >
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==2" />
+                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==2" />
+                      {{questionList[i-1].choice2}}
+                    </div>
+                    <div
+                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=3 && userAnswer[i-1].userAnswer != 3}"
+                    >
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==3" />
+                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==3" />
+                      {{questionList[i-1].choice3}}
+                    </div>
+                    <div
+                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=4 && userAnswer[i-1].userAnswer != 4}"
+                    >
+                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==4" />
+                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==4" />
+                      {{questionList[i-1].choice4}}
+                    </div>
+                  </div>
+                </div>
+
                 <!-- กรณีตอบถูก -->
                 <div v-if="questionList[i-1].type ==3">
                   <div v-if="userAnswer[i-1].correctAnswer == userAnswer[i-1].userAnswer">
-                  <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==1"><q-icon name="fas fa-check"/></span>
-                    <img :src="questionList[i-1].answer1URL" >
-                  </div>
-                  <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==2"><q-icon name="fas fa-check"/></span>
-                    <img :src="questionList[i-1].answer2URL" >
-                  </div>
-                   <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==3"><q-icon name="fas fa-check"/></span>
-                    <img :src="questionList[i-1].answer3URL" >
-                  </div>
-                   <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==4"><q-icon name="fas fa-check"/></span>
-                    <img :src="questionList[i-1].answer4URL" >
-                  </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==1">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <img :src="questionList[i-1].answer1URL" />
+                    </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==2">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <img :src="questionList[i-1].answer2URL" />
+                    </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==3">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <img :src="questionList[i-1].answer3URL" />
+                    </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==4">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <img :src="questionList[i-1].answer4URL" />
+                    </div>
                   </div>
                   <!-- กรณีตอบผิด -->
                   <div v-else>
-                     <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==1"><q-icon name="fas fa-check"/></span>
-                    <span v-if="userAnswer[i-1].userAnswer==1"><q-icon name="fas fa-times"/></span>
-                    <img :src="questionList[i-1].answer1URL" >
-                  </div>
-                  <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==2"><q-icon name="fas fa-check"/></span>
-                    <span v-if="userAnswer[i-1].userAnswer==2"><q-icon name="fas fa-times"/></span>
-                    <img :src="questionList[i-1].answer2URL" >
-                  </div>
-                   <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==3"><q-icon name="fas fa-check"/></span>
-                    <span v-if="userAnswer[i-1].userAnswer==3"><q-icon name="fas fa-times"/></span>
-                    <img :src="questionList[i-1].answer3URL" >
-                  </div>
-                   <div>
-                    <span v-if="userAnswer[i-1].correctAnswer==4"><q-icon name="fas fa-check"/></span>
-                    <span v-if="userAnswer[i-1].userAnswer==4"><q-icon name="fas fa-times"/></span>
-                    <img :src="questionList[i-1].answer4URL" >
-                  </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==1">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <span v-if="userAnswer[i-1].userAnswer==1">
+                        <q-icon name="fas fa-times" />
+                      </span>
+                      <img :src="questionList[i-1].answer1URL" />
+                    </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==2">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <span v-if="userAnswer[i-1].userAnswer==2">
+                        <q-icon name="fas fa-times" />
+                      </span>
+                      <img :src="questionList[i-1].answer2URL" />
+                    </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==3">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <span v-if="userAnswer[i-1].userAnswer==3">
+                        <q-icon name="fas fa-times" />
+                      </span>
+                      <img :src="questionList[i-1].answer3URL" />
+                    </div>
+                    <div>
+                      <span v-if="userAnswer[i-1].correctAnswer==4">
+                        <q-icon name="fas fa-check" />
+                      </span>
+                      <span v-if="userAnswer[i-1].userAnswer==4">
+                        <q-icon name="fas fa-times" />
+                      </span>
+                      <img :src="questionList[i-1].answer4URL" />
+                    </div>
                   </div>
                 </div>
-                <hr>
-               <div v-html="questionList[i-1].description">
-                 
-               </div>
+                <hr />
+                <div v-html="questionList[i-1].description"></div>
               </q-card-section>
             </q-card>
           </q-expansion-item>
-           <q-separator />
-         
+          <q-separator />
         </q-list>
-        <q-btn label="เริ่มทำต่อ" @click="doIt()"/>
-        <q-btn label="กลับเมนู" @click="backToMenu()"/>
+        <q-btn label="เริ่มทำต่อ" @click="doIt()" />
+        <q-btn label="กลับเมนู" @click="backToMenu()" />
       </div>
     </div>
   </div>
@@ -312,7 +382,7 @@ export default {
       questionList: [],
       star1: 10,
       star2: 20,
-      star3: 30,
+      star3: 40,
       scoreData: [],
       totalScore: 0,
       choiceAnswer: [1, 2, 3, 4],
@@ -321,16 +391,15 @@ export default {
       userAnswer: [],
       answerMode: false,
       showMark: [],
-      scoreSection:0,
-      totalAllScore :0
+      scoreSection: 0,
+      totalAllScore: 0
     };
   },
   methods: {
     async loadData() {
-
       this.mode = 1;
       this.userAnswer = [];
-      this.scoreSection = 0
+      this.scoreSection = 0;
       db.collection("reviewScore")
         .doc(this.studentData.studentId)
         .get()
@@ -340,10 +409,9 @@ export default {
           this.totalAllScore =
             this.scoreData.reduce((total, num) => {
               return total + num;
-            }) * 10
+            }) * 10;
         });
-       
-     
+
       //load คาบเรียนพร้อม index
       await db
         .collection("Section")
@@ -399,7 +467,7 @@ export default {
         //update score
         this.totalScore += 10;
         this.scoreData[this.page - 1] += 1;
-        this.scoreSection += 1
+        this.scoreSection += 1;
         db.collection("reviewScore")
           .doc(this.studentData.studentId)
           .set({ score: this.scoreData });
@@ -426,22 +494,21 @@ export default {
         }, 1000);
       }
     },
-    backToMenu(){
-      this.$router.push("/main")
+    backToMenu() {
+      this.$router.push("/main");
     },
-    doIt(){
-      this.questionList.splice(0,5)
-      if(this.questionList.length <=5){
-         this.questionNo =1
-          this.userAnswer = [];
-          this.scoreSection = 0
-        this.loadData()
+    doIt() {
+      this.questionList.splice(0, 5);
+      if (this.questionList.length <= 5) {
+        this.questionNo = 1;
+        this.userAnswer = [];
+        this.scoreSection = 0;
+        this.loadData();
       } else {
-        this.mode=2
-        this.questionNo =1
-          this.userAnswer = [];
-          this.scoreSection = 0
-          
+        this.mode = 2;
+        this.questionNo = 1;
+        this.userAnswer = [];
+        this.scoreSection = 0;
       }
     }
   },
@@ -469,5 +536,8 @@ export default {
 }
 .sizeimg {
   width: 350px;
+}
+.barlinear {
+  width: 700px;
 }
 </style>

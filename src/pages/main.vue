@@ -80,7 +80,7 @@ export default {
       totalScore: 0,
       star1: 10,
       star2: 20,
-      star3: 30
+      star3: 40
     };
   },
   methods: {

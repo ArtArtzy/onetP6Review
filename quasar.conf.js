@@ -41,11 +41,11 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: false,
 
-      components: ['QBtn', 'QInput', 'QIcon', 'QKnob', 'QList',   'QExpansionItem', 'QCard', 'QCardSection', 'QSeparator'],
+      components: ['QBtn', 'QInput', 'QIcon', 'QKnob', 'QList', 'QExpansionItem', 'QCard', 'QCardSection', 'QSeparator', 'QLinearProgress'],
       directives: [],
 
       // Quasar plugins
-      plugins: [ 'LocalStorage',]
+      plugins: ['LocalStorage',]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie

@@ -2,6 +2,7 @@
   <div>
     <div class="mainbox absolute-center">
       <div class="absolute-center relative-position">
+        คะแนนรวม {{totalScore}}
         <div class="row">
          <div class="col-12 q-ma-sm" v-for= "i in 8" :key="i">
            <q-btn class="btn" @click=reviewPageBtn(i) >ทบทวนครั้งที่ {{i}} (คาบ 1 - {{i}})
@@ -27,7 +28,7 @@ export default {
     return {
       studentData: this.$q.localStorage.getItem('studentData'),
       scoreData : [],
-
+      totalScore: 0,
       star1 : 10,
       star2: 20,
       star3: 30
@@ -39,10 +40,13 @@ export default {
         if(!data.exists){
           db.collection("reviewScore").doc(this.studentData.studentId).set({
             score : [0,0,0,0,0,0,0,0,0]
+            
           })
+          this.scoreData = [0,0,0,0,0,0,0,0,0]
         } else {
           this.scoreData = data.data().score
         }
+        this.totalScore = this.scoreData.reduce((total,num)=> { return total + num}) *10
       })
     },
     startBtn() {

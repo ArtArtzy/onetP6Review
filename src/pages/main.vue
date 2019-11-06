@@ -3,11 +3,18 @@
     <div class="mainbox absolute-center">
       <div class="absolute-center relative-position">
         <div class="row">
-          <div class="col-6">คะแนนสะสม 4000</div>
-          <div class="col-6">คะแนนประจำอาทิตย์ 1500</div>
+         <div class="col-12 q-ma-sm" v-for= "i in 8" :key="i">
+           <q-btn class="btn" @click=reviewPageBtn(i) >ทบทวนครั้งที่ {{i}} (คาบ 1 - {{i}})
+
+           <q-icon name="fas fa-star" v-if="scoreData[i-1] >= star1" class="q-ma-xs" />
+             <q-icon name="fas fa-star" v-if="scoreData[i-1] >= star2" class="q-ma-xs" />
+               <q-icon name="fas fa-star" v-if="scoreData[i-1] >= star3" class="q-ma-xs" />
+           </q-btn>
+           </div>
+      
         </div>
-        <br />
-        <q-btn class="btn" color="primary" label="เริ่มเรียน" @click="startBtn()" />
+   
+        
       </div>
     </div>
   </div>
@@ -19,14 +26,17 @@ export default {
   data() {
     return {
       studentData: this.$q.localStorage.getItem('studentData'),
-      scoreData : []
+      scoreData : [],
+
+      star1 : 10,
+      star2: 20,
+      star3: 30
     }
   },
   methods: {
     loadScore(){
       db.collection("reviewScore").doc(this.studentData.studentId).get().then(data=>{
         if(!data.exists){
-          console.log('test2');
           db.collection("reviewScore").doc(this.studentData.studentId).set({
             score : [0,0,0,0,0,0,0,0,0]
           })
@@ -37,6 +47,9 @@ export default {
     },
     startBtn() {
       this.$router.push("/review");
+    },
+    reviewPageBtn(page){
+      this.$router.push("/review/" + page)
     }
   },
   mounted () {
@@ -53,6 +66,6 @@ export default {
   border: 1px solid black;
 }
 .btn {
-  width: 400px;
+  width: 500px;
 }
 </style>

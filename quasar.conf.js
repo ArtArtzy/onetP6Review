@@ -18,7 +18,7 @@ module.exports = function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v4',
-      // 'fontawesome-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
@@ -41,7 +41,7 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: false,
 
-      components: ['QBtn', 'QInput'],
+      components: ['QBtn', 'QInput', 'QIcon'],
       directives: [],
 
       // Quasar plugins

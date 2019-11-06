@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <div class="mainbox absolute-center">
-      <div class="absolute-center relative-position">
-        คะแนนรวม {{totalScore}}
-        <div class="row">
-         <div class="col-12 q-ma-sm" v-for= "i in 8" :key="i">
-           <q-btn class="btn" @click=reviewPageBtn(i) >ทบทวนครั้งที่ {{i}} (คาบ 1 - {{i}})
+  <div class="bgImage">
+    <div class="mainbox bg3 absolute-center">
+      <div class="row q-pt-xl">
+        <div class="col-5 relative-position q-pl-md">
+          <div class="q-pa-md q-pl-xl">
+            <img style="width:400px;" src="../statics/image/main/PC.png" />
+          </div>
+          <div class="absolute-center text-center" style="width:100%">
+            <div style="height:90px"></div>
+            <div class="text-h4">{{studentData.name}}</div>
 
             <div>
               <br />

@@ -1,6 +1,6 @@
 <template>
   <div class="bgImage">
-    <div v-if="mode==1">Loading...</div>
+    <!-- <div v-if="mode==1">Loading...</div> -->
     <div v-if="mode==2" class="mainbox">
       <div style="height:100px"></div>
       <div>
@@ -678,205 +678,6 @@
               </q-btn>
             </div>
           </div>
-          <!-- answer -->
-          <!-- <div class="col-12 row q-px-xl q-pt-sm justify-center" v-if="answerMode">
-            <div class="q-px-sm col-6">
-              <q-btn
-                no-caps
-                dense
-                class="choiceFalse3 bg4 col-12 q-my-sm row"
-                v-if="showMark[0]==2"
-              >
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-times" color="white " class="brx" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer1URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[0]==1">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-check" color="white" class="brx" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px ">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer1URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[0]==0">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-motorcycle" color="white" class="brx" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer1URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-            </div>
-            <div class="q-px-sm col-6">
-              <q-btn
-                no-caps
-                dense
-                class="choiceFalse3 bg4 col-12 q-my-sm row"
-                v-if="showMark[1]==2"
-              >
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-times" color="white" class="brx" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer2URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[1]==1">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-check" color="white" class="brx" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer2URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[1]==0">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-car-side" color="white" class="brx" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer2URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-            </div>
-            <div class="q-px-sm col-6">
-              <q-btn
-                no-caps
-                dense
-                class="choiceFalse3 bg4 col-12 q-my-sm row"
-                v-if="showMark[2]==2"
-              >
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-times" color="white" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer3URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[2]==1">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-check" color="white" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer3URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[2]==0">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-helicopter" color="white" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer3URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-            </div>
-            <div class="q-px-sm col-6">
-              <q-btn
-                no-caps
-                dense
-                class="choiceFalse3 bg4 col-12 q-my-sm row"
-                v-if="showMark[3]==2"
-              >
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-times" color="white" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer4URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[3]==1">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-check" color="white" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer4URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[3]==0">
-                <div class="col-3" style="width:110px ">
-                  <q-icon size="50px" name="fas fa-plane" color="white" />
-                </div>
-                <div class="col bg-white box relative-position" style="height:200px">
-                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
-                    <img
-                      :src="this.questionList[questionNo-1].answer4URL"
-                      alt
-                      class="sizeimg q-pa-md"
-                    />
-                  </div>
-                </div>
-              </q-btn>
-            </div>
-          </div>-->
           <div class="col-12 row q-px-xl q-pt-sm justify-center" v-if="answerMode">
             <div class="q-px-sm col-6">
               <q-btn
@@ -1217,164 +1018,191 @@
     </div>
 
     <!-- summary -->
-    <div v-if="mode==3">
-      <div>คะแนนปัจจุบัน {{totalScore}}</div>
-      <div>คะแนนทั้งหมด {{totalAllScore}}</div>
-      <q-knob
-        :min="0"
-        :max="5"
-        v-model="scoreSection"
-        show-value
-        size="50px"
-        :thickness="0.22"
-        color="teal"
-        track-color="grey-3"
-        class="q-ma-md"
-      />
-      <div class="q-pa-md" style="max-width: 550px">
-        <q-list bordered class="rounded-borders" v-for="i in 5" :key="i">
-          <q-expansion-item
-            switch-toggle-side
-            expand-separator
-            :icon="userAnswer[i-1].answer?'fas fa-check' : 'fas fa-times'"
-            :label="'คำถามที่ '+ i"
-          >
-            <q-card>
-              <q-card-section>
-                <div>{{questionList[i-1].question}}</div>
-                <!-- รูปภาพกรณี 2 -->
-                <div v-if="questionList[i-1].type ==2">
-                  <img :src="questionList[i-1].questionURL" style="width:80%" />
-                </div>
-                <!-- แสดงคำตอบในกรณี 1 และ 2 -->
-                <div v-if="questionList[i-1].type !=3 ">
-                  <div v-if="userAnswer[i-1].answer">
-                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=1}">
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==1" />
-                      {{questionList[i-1].choice1}}
-                    </div>
-                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=2}">
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==2" />
-                      {{questionList[i-1].choice2}}
-                    </div>
-                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=3}">
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==3" />
-                      {{questionList[i-1].choice3}}
-                    </div>
-                    <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=4}">
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==4" />
-                      {{questionList[i-1].choice4}}
-                    </div>
-                  </div>
-                  <div v-else>
-                    <div
-                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=1 && userAnswer[i-1].userAnswer != 1}"
-                    >
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==1" />
-                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==1" />
-                      {{questionList[i-1].choice1}}
-                    </div>
-                    <div
-                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=2 && userAnswer[i-1].userAnswer != 2}"
-                    >
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==2" />
-                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==2" />
-                      {{questionList[i-1].choice2}}
-                    </div>
-                    <div
-                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=3 && userAnswer[i-1].userAnswer != 3}"
-                    >
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==3" />
-                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==3" />
-                      {{questionList[i-1].choice3}}
-                    </div>
-                    <div
-                      :class="{'text-grey' : userAnswer[i-1].correctAnswer !=4 && userAnswer[i-1].userAnswer != 4}"
-                    >
-                      <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==4" />
-                      <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==4" />
-                      {{questionList[i-1].choice4}}
-                    </div>
-                  </div>
-                </div>
+    <div class="row justify-center item-center window-height" v-if="mode==3">
+      <div class="mainbox bg3">
+        <div class="relative-position q-mx-md" style="height:30px">
+          <q-knob
+            :min="0"
+            :max="5"
+            v-model="scoreSection"
+            show-value
+            size="90px"
+            :thickness="0.22"
+            color="teal "
+            class="q-ma-md absolute-left bg10 text-white"
+            style="border-radius:50px;"
+          />
+        </div>
 
-                <!-- กรณีตอบถูก -->
-                <div v-if="questionList[i-1].type ==3">
-                  <div v-if="userAnswer[i-1].correctAnswer == userAnswer[i-1].userAnswer">
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==1">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <img :src="questionList[i-1].answer1URL" />
+        <div class="row bg2 q-mx-xl">
+          <div class="col-3 q-py-sm text-center">
+            คะแนนปัจจุบัน
+            <br />
+            {{totalScore}}
+          </div>
+          <div class="col"></div>
+          <div
+            style="border:1px solid black"
+            class="col-2 rounded-borders bg-white q-pa-sm text-center"
+          >
+            คะแนนทั้งหมด
+            <br />
+            {{totalAllScore}}
+          </div>
+        </div>
+        <div class="q-pa-lg q-mt-lg q-mx-lg">
+          <q-list bordered class="rounded-borders" v-for="i in 5" :key="i">
+            <q-expansion-item
+              switch-toggle-side
+              expand-separator
+              class="bg-white"
+              :icon="userAnswer[i-1].answer?'fas fa-check' : 'fas fa-times'"
+              :label="'คำถามที่ '+ i"
+            >
+              <q-card class="bg-white">
+                <q-card-section>
+                  <div>{{questionList[i-1].question}}</div>
+                  <!-- รูปภาพกรณี 2 -->
+                  <div v-if="questionList[i-1].type ==2">
+                    <img :src="questionList[i-1].questionURL" style="width:80%" />
+                  </div>
+                  <!-- แสดงคำตอบในกรณี 1 และ 2 -->
+                  <div v-if="questionList[i-1].type !=3 ">
+                    <div v-if="userAnswer[i-1].answer">
+                      <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=1}">
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==1" />
+                        {{questionList[i-1].choice1}}
+                      </div>
+                      <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=2}">
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==2" />
+                        {{questionList[i-1].choice2}}
+                      </div>
+                      <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=3}">
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==3" />
+                        {{questionList[i-1].choice3}}
+                      </div>
+                      <div :class="{'text-grey' : userAnswer[i-1].correctAnswer !=4}">
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==4" />
+                        {{questionList[i-1].choice4}}
+                      </div>
                     </div>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==2">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <img :src="questionList[i-1].answer2URL" />
-                    </div>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==3">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <img :src="questionList[i-1].answer3URL" />
-                    </div>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==4">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <img :src="questionList[i-1].answer4URL" />
+                    <div v-else>
+                      <div
+                        :class="{'text-grey' : userAnswer[i-1].correctAnswer !=1 && userAnswer[i-1].userAnswer != 1}"
+                      >
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==1" />
+                        <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==1" />
+                        {{questionList[i-1].choice1}}
+                      </div>
+                      <div
+                        :class="{'text-grey' : userAnswer[i-1].correctAnswer !=2 && userAnswer[i-1].userAnswer != 2}"
+                      >
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==2" />
+                        <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==2" />
+                        {{questionList[i-1].choice2}}
+                      </div>
+                      <div
+                        :class="{'text-grey' : userAnswer[i-1].correctAnswer !=3 && userAnswer[i-1].userAnswer != 3}"
+                      >
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==3" />
+                        <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==3" />
+                        {{questionList[i-1].choice3}}
+                      </div>
+                      <div
+                        :class="{'text-grey' : userAnswer[i-1].correctAnswer !=4 && userAnswer[i-1].userAnswer != 4}"
+                      >
+                        <q-icon name="fas fa-check" v-if="userAnswer[i-1].correctAnswer ==4" />
+                        <q-icon name="fas fa-times" v-if="userAnswer[i-1].userAnswer ==4" />
+                        {{questionList[i-1].choice4}}
+                      </div>
                     </div>
                   </div>
-                  <!-- กรณีตอบผิด -->
-                  <div v-else>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==1">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <span v-if="userAnswer[i-1].userAnswer==1">
-                        <q-icon name="fas fa-times" />
-                      </span>
-                      <img :src="questionList[i-1].answer1URL" />
+
+                  <!-- กรณีตอบถูก -->
+                  <div v-if="questionList[i-1].type ==3">
+                    <div v-if="userAnswer[i-1].correctAnswer == userAnswer[i-1].userAnswer">
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==1">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <img :src="questionList[i-1].answer1URL" />
+                      </div>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==2">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <img :src="questionList[i-1].answer2URL" />
+                      </div>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==3">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <img :src="questionList[i-1].answer3URL" />
+                      </div>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==4">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <img :src="questionList[i-1].answer4URL" />
+                      </div>
                     </div>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==2">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <span v-if="userAnswer[i-1].userAnswer==2">
-                        <q-icon name="fas fa-times" />
-                      </span>
-                      <img :src="questionList[i-1].answer2URL" />
-                    </div>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==3">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <span v-if="userAnswer[i-1].userAnswer==3">
-                        <q-icon name="fas fa-times" />
-                      </span>
-                      <img :src="questionList[i-1].answer3URL" />
-                    </div>
-                    <div>
-                      <span v-if="userAnswer[i-1].correctAnswer==4">
-                        <q-icon name="fas fa-check" />
-                      </span>
-                      <span v-if="userAnswer[i-1].userAnswer==4">
-                        <q-icon name="fas fa-times" />
-                      </span>
-                      <img :src="questionList[i-1].answer4URL" />
+                    <!-- กรณีตอบผิด -->
+                    <div v-else>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==1">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <span v-if="userAnswer[i-1].userAnswer==1">
+                          <q-icon name="fas fa-times" />
+                        </span>
+                        <img :src="questionList[i-1].answer1URL" />
+                      </div>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==2">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <span v-if="userAnswer[i-1].userAnswer==2">
+                          <q-icon name="fas fa-times" />
+                        </span>
+                        <img :src="questionList[i-1].answer2URL" />
+                      </div>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==3">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <span v-if="userAnswer[i-1].userAnswer==3">
+                          <q-icon name="fas fa-times" />
+                        </span>
+                        <img :src="questionList[i-1].answer3URL" />
+                      </div>
+                      <div>
+                        <span v-if="userAnswer[i-1].correctAnswer==4">
+                          <q-icon name="fas fa-check" />
+                        </span>
+                        <span v-if="userAnswer[i-1].userAnswer==4">
+                          <q-icon name="fas fa-times" />
+                        </span>
+                        <img :src="questionList[i-1].answer4URL" />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <hr />
-                <div v-html="questionList[i-1].description"></div>
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-          <q-separator />
-        </q-list>
-        <q-btn label="เริ่มทำต่อ" @click="doIt()" />
-        <q-btn label="กลับเมนู" @click="backToMenu()" />
+                  <hr />
+                  <div v-html="questionList[i-1].description"></div>
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+            <q-separator />
+          </q-list>
+          <div class="q-pa-md" align="center">
+            <q-btn class="bg-white q-mx-sm" style="width:190px" label="เริ่มทำต่อ" @click="doIt()" />
+            <q-btn
+              class="bg5 q-mx-sm text-white"
+              style="width:190px"
+              label="กลับเมนู"
+              @click="backToMenu()"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1497,7 +1325,7 @@ export default {
       setTimeout(() => {
         this.questionNo++;
         this.answerMode = false;
-      }, 3000);
+      }, 1000);
       if (this.questionNo >= 5) {
         setTimeout(() => {
           this.mode = 3;

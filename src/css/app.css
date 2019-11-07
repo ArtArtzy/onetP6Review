@@ -8,6 +8,13 @@
   src: url('../statics/fonts/Prompt-Bold.ttf')
 }
 body{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../statics/image/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center ;
+  background-repeat: no-repeat;
  font-family: Prompt-Regular;
  background-color: #f5f7fb  
 }
@@ -44,18 +51,9 @@ body{
 .bg9{
    background: #A0A4A8 ;
 }
-
-.bgImageMobile {
-  background-image: url("../statics/image/background.jpg");
-  background-size: cover;
-  width: 100%;
-  background-attachment: fixed;
-  background-repeat: repeat;
-
+.bg10{
+   background: #353535 ;
 }
-.bgImage {
-  width: 100%;
-  height: 100vh;
-  background-image: url("../statics/image/background.jpg");
-  background-size: cover;
-}
+
+
+

@@ -41,7 +41,7 @@
                       <div class="col-7 text-left q-pt-sm">
                         <div class="q-pt-lg q-px-md">ทบทวนครั้งที่ {{i}} (คาบ 1 - {{i}})</div>
                       </div>
-                      <div class="col-3">
+                      <div class="col-3" align="left">
                         <div class="q-pt-lg">
                           <q-icon
                             name="fas fa-star"

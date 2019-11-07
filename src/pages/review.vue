@@ -13,7 +13,18 @@
               :value="totalScore/(star3*10)"
             />
             <div class="col-3 relative-position" align="right">
-              <q-icon style="right:-11px" name="fas fa-star" class="q-ma-xs q-mb-lg color1" />
+              <q-icon
+                style="right:-11px"
+                name="fas fa-star"
+                class="q-ma-xs color1 absolute-right"
+                v-if="totalScore >= star1*10"
+              />
+              <q-icon
+                style="right:-11px"
+                name="fas fa-star"
+                class="q-ma-xs text-grey absolute-right"
+                v-if="totalScore < star1*10"
+              />
               <br />
               <span class="absolute-bottom-right" style="right:-11px">{{star1*10}}</span>
             </div>
@@ -21,13 +32,31 @@
               <q-icon
                 style="right:-11px"
                 name="fas fa-star"
-                class="q-ma-xs color1 q-mb-lg absolute-right"
+                class="q-ma-xs color1 absolute-right"
+                v-if="totalScore >= star2*10"
+              />
+              <q-icon
+                style="right:-11px"
+                name="fas fa-star"
+                class="q-ma-xs text-grey absolute-right"
+                v-if="totalScore < star2*10"
               />
               <br />
               <span class="absolute-bottom-right" style="right:-11px">{{star2*10}}</span>
             </div>
             <div class="col-6 relative-position" align="right">
-              <q-icon style="right:-11px" name="fas fa-star" class="q-ma-xs color1 absolute-right" />
+              <q-icon
+                style="right:-11px"
+                name="fas fa-star"
+                class="q-ma-xs color1 absolute-right"
+                v-if="totalScore >= star3*10"
+              />
+              <q-icon
+                style="right:-11px"
+                name="fas fa-star"
+                class="q-ma-xs text-grey absolute-right"
+                v-if="totalScore < star3*10"
+              />
               <br />
               <span class="absolute-bottom-right" style="right:-11px">{{star3*10}}</span>
             </div>
@@ -1040,7 +1069,55 @@
             <br />
             {{totalScore}}
           </div>
-          <div class="col"></div>
+          <div class="col" align="center">
+            <div>
+              <q-icon
+                s
+                name="fas fa-star"
+                class="q-ma-md color1"
+                size="md"
+                v-if="totalScore >= star1*10"
+              />
+              <q-icon
+                s
+                name="fas fa-star"
+                class="q-ma-md"
+                color="grey"
+                size="md"
+                v-if="totalScore < star1*10"
+              />
+              <q-icon
+                s
+                name="fas fa-star"
+                class="q-ma-md color1"
+                size="md"
+                v-if="totalScore >= star2*10"
+              />
+              <q-icon
+                s
+                name="fas fa-star"
+                class="q-ma-md"
+                color="grey"
+                size="md"
+                v-if="totalScore < star2*10"
+              />
+              <q-icon
+                s
+                name="fas fa-star"
+                class="q-ma-md color1"
+                size="md"
+                v-if="totalScore >= star3*10"
+              />
+              <q-icon
+                s
+                name="fas fa-star"
+                class="q-ma-md"
+                color="grey"
+                size="md"
+                v-if="totalScore < star3*10"
+              />
+            </div>
+          </div>
           <div
             style="border:1px solid black"
             class="col-2 rounded-borders bg-white q-pa-sm text-center"
@@ -1194,12 +1271,17 @@
             <q-separator />
           </q-list>
           <div class="q-pa-md" align="center">
-            <q-btn class="bg-white q-mx-sm" style="width:190px" label="เริ่มทำต่อ" @click="doIt()" />
             <q-btn
-              class="bg5 q-mx-sm text-white"
+              class="bg-white q-mx-sm"
               style="width:190px"
               label="กลับเมนู"
               @click="backToMenu()"
+            />
+            <q-btn
+              class="bg5 q-mx-sm text-white"
+              style="width:190px"
+              label="เริ่มทำต่อ"
+              @click="doIt()"
             />
           </div>
         </div>

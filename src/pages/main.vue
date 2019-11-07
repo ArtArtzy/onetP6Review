@@ -1,6 +1,43 @@
 <template>
   <div>
     <div class="desktop-only bgImage">
+      <div class="topBar q-pt-sm q-pl-md text-h5 shadow-3 row">
+        <div class="col-9">Winner O-NET Review</div>
+        <div class="col-3 q-pr-md" align="right">
+          <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
+        </div>
+      </div>
+      <q-dialog v-model="confirm" persistent>
+        <q-card style="width:400px; border: 5px solid black;border-radius:10px ">
+          <q-card-section class="row items-center">
+            <span class="text-h6 text-center col-12">คุณต้องการออกจากระบบหรือไม่?</span>
+          </q-card-section>
+          <q-card-actions>
+            <div class="row justify-center col-12">
+              <div class="q-px-sm q-pb-lg">
+                <q-btn
+                  flat
+                  size="md"
+                  style="width:100px; border: 3px solid red"
+                  label="ยกเลิก"
+                  color="negative"
+                  v-close-popup
+                />
+              </div>
+              <div class="q-px-sm q-pb-lg">
+                <q-btn
+                  class="bg5 text-white"
+                  @click="logout()"
+                  size="md"
+                  style="width:100px"
+                  label="ตกลง"
+                  v-close-popup
+                />
+              </div>
+            </div>
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
       <div class="mainbox bg3 absolute-center">
         <div class="row q-pt-xl">
           <div class="col-5 relative-position q-pl-md">
@@ -141,10 +178,16 @@ export default {
       totalScore: 0,
       star1: 10,
       star2: 20,
-      star3: 40
+      star3: 40,
+      confirm: false
     };
   },
   methods: {
+    logout() {
+      this.notifyGreen("ออกจากระบบ");
+      this.$q.localStorage.set("studentData", "");
+      this.$router.push("/");
+    },
     loadScore() {
       db.collection("reviewScore")
         .doc(this.studentData.studentId)
@@ -217,5 +260,10 @@ export default {
   background: #f59085;
   border-radius: 10px;
   border: 1px solid #fff0e2;
+}
+.topBar {
+  height: 50px;
+  background-color: #0a9e9c;
+  color: white;
 }
 </style>

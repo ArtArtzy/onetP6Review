@@ -1,5 +1,42 @@
 <template>
-  <div class="bgImage">
+  <div class="bgImage text-body1">
+    <div class="topBar q-pt-sm q-pl-md text-h5 shadow-3 row">
+      <div class="col-9">Winner O-NET Review</div>
+      <div class="col-3 q-pr-md" align="right">
+        <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
+      </div>
+    </div>
+    <q-dialog v-model="confirm" persistent>
+      <q-card style="width:400px; border: 5px solid black;border-radius:10px ">
+        <q-card-section class="row items-center">
+          <span class="text-h6 text-center col-12">คุณต้องการออกจากระบบหรือไม่?</span>
+        </q-card-section>
+        <q-card-actions>
+          <div class="row justify-center col-12">
+            <div class="q-px-sm q-pb-lg">
+              <q-btn
+                flat
+                size="md"
+                style="width:100px; border: 3px solid red"
+                label="ยกเลิก"
+                color="negative"
+                v-close-popup
+              />
+            </div>
+            <div class="q-px-sm q-pb-lg">
+              <q-btn
+                class="bg5 text-white"
+                @click="logout()"
+                size="md"
+                style="width:100px"
+                label="ตกลง"
+                v-close-popup
+              />
+            </div>
+          </div>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <!-- <div v-if="mode==1">Loading...</div> -->
     <div v-if="mode==2" class="mainbox">
       <div style="height:100px"></div>
@@ -25,6 +62,7 @@
                 class="q-ma-xs text-grey absolute-right"
                 v-if="totalScore < star1*10"
               />
+              <br />
               <br />
               <span class="absolute-bottom-right" style="right:-11px">{{star1*10}}</span>
             </div>
@@ -1047,7 +1085,7 @@
     </div>
 
     <!-- summary -->
-    <div class="row justify-center item-center window-height" v-if="mode==3">
+    <div class="row justify-center item-center q-pt-xl" v-if="mode==3">
       <div class="mainbox bg3">
         <div class="relative-position q-mx-md" style="height:30px">
           <q-knob
@@ -1072,14 +1110,12 @@
           <div class="col" align="center">
             <div>
               <q-icon
-                s
                 name="fas fa-star"
                 class="q-ma-md color1"
                 size="md"
                 v-if="totalScore >= star1*10"
               />
               <q-icon
-                s
                 name="fas fa-star"
                 class="q-ma-md"
                 color="grey"
@@ -1087,14 +1123,12 @@
                 v-if="totalScore < star1*10"
               />
               <q-icon
-                s
                 name="fas fa-star"
                 class="q-ma-md color1"
                 size="md"
                 v-if="totalScore >= star2*10"
               />
               <q-icon
-                s
                 name="fas fa-star"
                 class="q-ma-md"
                 color="grey"
@@ -1102,14 +1136,12 @@
                 v-if="totalScore < star2*10"
               />
               <q-icon
-                s
                 name="fas fa-star"
                 class="q-ma-md color1"
                 size="md"
                 v-if="totalScore >= star3*10"
               />
               <q-icon
-                s
                 name="fas fa-star"
                 class="q-ma-md"
                 color="grey"
@@ -1141,7 +1173,7 @@
                   <div>{{questionList[i-1].question}}</div>
                   <!-- รูปภาพกรณี 2 -->
                   <div v-if="questionList[i-1].type ==2">
-                    <img :src="questionList[i-1].questionURL" style="width:80%" />
+                    <img :src="questionList[i-1].questionURL" class="sizeimg2" />
                   </div>
                   <!-- แสดงคำตอบในกรณี 1 และ 2 -->
                   <div v-if="questionList[i-1].type !=3 ">
@@ -1313,10 +1345,16 @@ export default {
       answerMode: false,
       showMark: [],
       scoreSection: 0,
-      totalAllScore: 0
+      totalAllScore: 0,
+      confirm: false
     };
   },
   methods: {
+    logout() {
+      this.notifyGreen("ออกจากระบบ");
+      this.$q.localStorage.set("studentData", "");
+      this.$router.push("/");
+    },
     async loadData() {
       this.mode = 1;
       this.userAnswer = [];
@@ -1463,6 +1501,11 @@ export default {
   height: 200px;
   object-fit: scale-down;
 }
+.sizeimg2 {
+  width: 500px;
+  height: 400px;
+  object-fit: scale-down;
+}
 .barlinear {
   width: 700px;
 }
@@ -1525,5 +1568,10 @@ export default {
   width: 100%;
   text-align: center;
   border-radius: 10px;
+}
+.topBar {
+  height: 50px;
+  background-color: #0a9e9c;
+  color: white;
 }
 </style>

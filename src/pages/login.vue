@@ -121,8 +121,8 @@ export default {
     return {
       versionData: "",
       input: {
-        username: "1073163",
-        password: "6406"
+        username: "",
+        password: ""
       }
     };
   },

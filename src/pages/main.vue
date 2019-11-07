@@ -13,7 +13,7 @@
 
               <div>
                 <br />
-                <div class="text-h4">คะแนนรวม</div>
+                <div class="text-h4">คะแนนสะสม</div>
                 <br />
                 <div class="text-h3">{{totalScore}}</div>
               </div>
@@ -78,7 +78,7 @@
           <div class="q-pa-md text-center textTitle">{{studentData.name}}</div>
           <div class="bg-white" style="border-radius: 5px;">
             <div class="text-center">
-              <span class="textTitle">คะแนนรวม</span>
+              <span class="textTitle">คะแนนสะสม</span>
               <br />
               <span class="title">{{totalScore}}</span>
             </div>

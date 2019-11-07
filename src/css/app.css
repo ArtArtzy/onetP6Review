@@ -35,6 +35,16 @@ body{
 .bg6{
     background: #0D5D76;
 }
+.bg7{
+    background: #67C7C6 ;
+}
+.bg8{
+    background:  #EFB71C ;
+}
+.bg9{
+   background: #A0A4A8 ;
+}
+
 .bgImageMobile {
   background-image: url("../statics/image/background.jpg");
   background-size: cover;

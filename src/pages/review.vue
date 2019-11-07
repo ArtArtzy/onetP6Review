@@ -1,176 +1,1185 @@
 <template>
-  <div>
+  <div class="bgImage">
     <div v-if="mode==1">Loading...</div>
-    <div v-if="mode==2" class="mainBox absolute-center">
-      <div>คะแนนปัจจุบัน {{totalScore}}</div>
-      <div>คะแนนทั้งหมด {{totalAllScore}}</div>
-      <div class="barlinear row">
-        <div class="col-12">
-          <q-linear-progress stripe style="height: 10px" :value="totalScore/(star3*10)" />
+    <div v-if="mode==2" class="mainbox">
+      <div style="height:100px"></div>
+      <div>
+        <div class="barlinear row q-px-xl q-pt-md bg3" style="width:100%">
+          <div class="col-10 row" style="height:10px">
+            <q-linear-progress
+              class="color1"
+              stripe
+              style="height: 15px"
+              :value="totalScore/(star3*10)"
+            />
+            <div class="col-3 relative-position" align="right">
+              <q-icon style="right:-11px" name="fas fa-star" class="q-ma-xs q-mb-lg color1" />
+              <br />
+              <span class="absolute-bottom-right" style="right:-11px">{{star1*10}}</span>
+            </div>
+            <div class="col relative-position" align="right">
+              <q-icon
+                style="right:-11px"
+                name="fas fa-star"
+                class="q-ma-xs color1 q-mb-lg absolute-right"
+              />
+              <br />
+              <span class="absolute-bottom-right" style="right:-11px">{{star2*10}}</span>
+            </div>
+            <div class="col-6 relative-position" align="right">
+              <q-icon style="right:-11px" name="fas fa-star" class="q-ma-xs color1 absolute-right" />
+              <br />
+              <span class="absolute-bottom-right" style="right:-11px">{{star3*10}}</span>
+            </div>
+          </div>
+          <div class="col-2 q-pl-md">
+            <div class="text-center q-pa-sm bg2" style="height:60px; border-radius: 5px;">
+              <span>คะแนนปัจจุบัน</span>
+              <br />
+              <span>{{totalScore}}</span>
+            </div>
+          </div>
         </div>
-        <div class="col-3" align="right">{{star1*10}}</div>
-        <div class="col-3" align="right">{{star2*10}}</div>
-        <div class="col-6" align="right">{{star3*10}}</div>
+
+        <!-- <div>คะแนนทั้งหมด {{totalAllScore}}</div> -->
       </div>
-      <!-- โจทย์แบบ 1  -->
-      <div v-if="this.questionList[questionNo-1].type == 1" class="row justify-center">
+      <div v-if="this.questionList[questionNo-1].type == 1" class="q-pt-sm row justify-center bg3">
         <!-- คำถาม -->
-        <div
-          class="questionzone bg-orange-1 text-center q-pa-md"
-        >{{this.questionList[questionNo-1].question}}</div>
+
+        <div class="questionzone text-center text-h5">
+          <div
+            class="bg2 q-pa-md"
+            style="border-radius: 5px;"
+          >{{this.questionList[questionNo-1].question}}</div>
+        </div>
         <!-- choice -->
-        <div class="col-12 row justify-center" v-if="!answerMode">
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
+        <div class="col-12 row justify-center q-pt-md" v-if="!answerMode">
+          <q-btn
+            no-caps
+            dense
+            class="choice1 bg1 col-12 q-my-sm cursor-pointer row"
             @click="answer(1)"
-          >{{this.questionList[questionNo-1].choice1}}</div>
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
+          >
+            <div class="col-3" style="width:100px  ">
+              <q-icon size="50px" color="white" name="fas fa-motorcycle" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice1}}</div>
+            </div>
+          </q-btn>
+          <q-btn
+            no-caps
+            dense
+            class="choice2 bg7 col-12 q-my-sm cursor-pointer row"
             @click="answer(2)"
-          >{{this.questionList[questionNo-1].choice2}}</div>
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
+          >
+            <div class="col-3" style="width:100px  ">
+              <q-icon size="50px" color="white" name="fas fa-car-side" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice2}}</div>
+            </div>
+          </q-btn>
+          <q-btn
+            no-caps
+            dense
+            class="choice3 bg6 col-12 q-my-sm cursor-pointer row"
             @click="answer(3)"
-          >{{this.questionList[questionNo-1].choice3}}</div>
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
+          >
+            <div class="col-3" style="width:100px  ">
+              <q-icon size="50px" color="white" name="fas fa-helicopter" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice3}}</div>
+            </div>
+          </q-btn>
+          <q-btn
+            no-caps
+            dense
+            class="choice4 bg8 col-12 q-my-sm cursor-pointer row"
             @click="answer(4)"
-          >{{this.questionList[questionNo-1].choice4}}</div>
+          >
+            <div class="col-3" style="width:100px  ">
+              <q-icon size="50px" color="white" name="fas fa-plane" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice4}}</div>
+            </div>
+          </q-btn>
         </div>
         <!-- answer -->
-        <div class="col-12 row justify-center" v-if="answerMode">
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[0]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[0]==1" />
-            {{this.questionList[questionNo-1].choice1}}
-          </div>
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[1]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[1]==1" />
-            {{this.questionList[questionNo-1].choice2}}
-          </div>
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[2]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[2]==1" />
-            {{this.questionList[questionNo-1].choice3}}
-          </div>
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[3]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[3]==1" />
-            {{this.questionList[questionNo-1].choice4}}
-          </div>
+        <div class="col-12 row justify-center q-pt-md" v-if="answerMode">
+          <!-- answer1 -->
+          <q-btn no-caps dense class="choiceFalse bg4 col-12 q-my-sm row" v-if="showMark[0]==2">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-times" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice1}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceTrue bg5 col-12 q-my-sm row" v-if="showMark[0]==1">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-check" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice1}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[0]==0">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="50px" name="fas fa-motorcycle" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice1}}</div>
+            </div>
+          </q-btn>
+          <!-- answer2 -->
+          <q-btn no-caps dense class="choiceFalse bg4 col-12 q-my-sm row" v-if="showMark[1]==2">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-times" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice2}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceTrue bg5 col-12 q-my-sm row" v-if="showMark[1]==1">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-check" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice2}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[1]==0">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="50px" name="fas fa-car-side" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice2}}</div>
+            </div>
+          </q-btn>
+          <!-- answer3 -->
+          <q-btn no-caps dense class="choiceFalse bg4 col-12 q-my-sm row" v-if="showMark[2]==2">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-times" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice3}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceTrue bg5 col-12 q-my-sm row" v-if="showMark[2]==1">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-check" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice3}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[2]==0">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="50px" name="fas fa-helicopter" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice3}}</div>
+            </div>
+          </q-btn>
+          <!-- answer4 -->
+          <q-btn no-caps dense class="choiceFalse bg4 col-12 q-my-sm row" v-if="showMark[3]==2">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-times" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice4}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceTrue bg5 col-12 q-my-sm row" v-if="showMark[3]==1">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="70px" name="fas fa-check" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice4}}</div>
+            </div>
+          </q-btn>
+          <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[3]==0">
+            <div class="col-3" style="width:100px ">
+              <q-icon size="50px" name="fas fa-plane" color="white" />
+            </div>
+            <div class="col bg-white box relative-position" style="height:90px">
+              <div
+                class="text-h5 q-px-md absolute-center"
+                align="left"
+                style="width:100%"
+              >{{this.questionList[questionNo-1].choice4}}</div>
+            </div>
+          </q-btn>
         </div>
       </div>
 
       <!-- โจทย์แบบ 2 -->
       <div v-if="this.questionList[questionNo-1].type == 2">
         <!-- คำถาม -->
-        <div
-          class="questionzone bg-orange-1 text-center q-pa-md"
-        >{{this.questionList[questionNo-1].question}}</div>
+        <div class="row bg3">
+          <div class="col-6 row q-py-md q-pl-xl q-pr-md">
+            <div class="bg2" style="width:100%">
+              <div
+                class="col-12 questionzone text-left q-py-md text-h5"
+              >{{this.questionList[questionNo-1].question}}</div>
+              <div class="col-12 q-my-md" align="center">
+                <img style="width:90%" :src="questionList[questionNo-1].questionURL" alt />
+              </div>
+            </div>
+          </div>
+          <div class="col-6 q-py-sm q-pr-lg">
+            <div>
+              <!-- choice -->
+              <div class="row justify-center" v-if="!answerMode">
+                <q-btn
+                  no-caps
+                  dense
+                  class="choice1 bg1 col-12 q-my-sm cursor-pointer row"
+                  @click="answer(1)"
+                >
+                  <div class="col-3" style="width:100px  ">
+                    <q-icon size="50px" color="white" name="fas fa-motorcycle" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice1}}</div>
+                  </div>
+                </q-btn>
+                <!-- 2 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choice2 bg7 col-12 q-my-sm cursor-pointer row"
+                  @click="answer(2)"
+                >
+                  <div class="col-3" style="width:100px  ">
+                    <q-icon size="50px" color="white" name="fas fa-car-side" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice2}}</div>
+                  </div>
+                </q-btn>
+                <!-- 3 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choice3 bg6 col-12 q-my-sm cursor-pointer row"
+                  @click="answer(3)"
+                >
+                  <div class="col-3" style="width:100px  ">
+                    <q-icon size="50px" color="white" name="fas fa-helicopter" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice3}}</div>
+                  </div>
+                </q-btn>
+                <!-- 4 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choice4 bg8 col-12 q-my-sm cursor-pointer row"
+                  @click="answer(4)"
+                >
+                  <div class="col-3" style="width:100px  ">
+                    <q-icon size="50px" color="white" name="fas fa-plane" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice4}}</div>
+                  </div>
+                </q-btn>
+              </div>
+              <!-- answer -->
+              <div class="row justify-center" v-if="answerMode">
+                <!-- answer1 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceFalse bg4 col-12 q-my-sm row"
+                  v-if="showMark[0]==2"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-times" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice1}}</div>
+                  </div>
+                </q-btn>
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceTrue bg5 col-12 q-my-sm row"
+                  v-if="showMark[0]==1"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-check" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice1}}</div>
+                  </div>
+                </q-btn>
+                <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[0]==0">
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="50px" name="fas fa-motorcycle" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice1}}</div>
+                  </div>
+                </q-btn>
+                <!-- answer2 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceFalse bg4 col-12 q-my-sm row"
+                  v-if="showMark[1]==2"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-times" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice2}}</div>
+                  </div>
+                </q-btn>
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceTrue bg5 col-12 q-my-sm row"
+                  v-if="showMark[1]==1"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-check" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice2}}</div>
+                  </div>
+                </q-btn>
+                <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[1]==0">
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="50px" name="fas fa-car-side" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice2}}</div>
+                  </div>
+                </q-btn>
+                <!-- answer3 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceFalse bg4 col-12 q-my-sm row"
+                  v-if="showMark[2]==2"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-times" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice3}}</div>
+                  </div>
+                </q-btn>
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceTrue bg5 col-12 q-my-sm row"
+                  v-if="showMark[2]==1"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-check" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice3}}</div>
+                  </div>
+                </q-btn>
+                <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[2]==0">
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="50px" name="fas fa-helicopter" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice3}}</div>
+                  </div>
+                </q-btn>
+                <!-- answer4 -->
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceFalse bg4 col-12 q-my-sm row"
+                  v-if="showMark[3]==2"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-times" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice4}}</div>
+                  </div>
+                </q-btn>
+                <q-btn
+                  no-caps
+                  dense
+                  class="choiceTrue bg5 col-12 q-my-sm row"
+                  v-if="showMark[3]==1"
+                >
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="70px" name="fas fa-check" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice4}}</div>
+                  </div>
+                </q-btn>
+                <q-btn no-caps dense class="choiceNon bg9 col-12 q-my-sm row" v-if="showMark[3]==0">
+                  <div class="col-3" style="width:100px ">
+                    <q-icon size="50px" name="fas fa-plane" color="white" />
+                  </div>
+                  <div class="col bg-white box relative-position" style="height:90px">
+                    <div
+                      class="text-h5 q-px-md absolute-center"
+                      align="left"
+                      style="width:100%"
+                    >{{this.questionList[questionNo-1].choice4}}</div>
+                  </div>
+                </q-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- รูปภาพ -->
-
-        <div class="col-12" align="center">
-          <img :src="questionList[questionNo-1].questionURL" alt />
-        </div>
-
-        <!-- choice -->
-        <div class="col-12 row justify-center" v-if="!answerMode">
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
-            @click="answer(1)"
-          >{{this.questionList[questionNo-1].choice1}}</div>
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
-            @click="answer(2)"
-          >{{this.questionList[questionNo-1].choice2}}</div>
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
-            @click="answer(3)"
-          >{{this.questionList[questionNo-1].choice3}}</div>
-          <div
-            class="choice q-py-md col-12 q-my-sm cursor-pointer"
-            @click="answer(4)"
-          >{{this.questionList[questionNo-1].choice4}}</div>
-        </div>
-        <!-- answer -->
-        <div class="col-12 row justify-center" v-if="answerMode">
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[0]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[0]==1" />
-            {{this.questionList[questionNo-1].choice1}}
-          </div>
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[1]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[1]==1" />
-            {{this.questionList[questionNo-1].choice2}}
-          </div>
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[2]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[2]==1" />
-            {{this.questionList[questionNo-1].choice3}}
-          </div>
-          <div class="choice q-py-md col-12 q-my-sm">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[3]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[3]==1" />
-            {{this.questionList[questionNo-1].choice4}}
-          </div>
-        </div>
       </div>
 
       <!-- โจทย์แบบ 3 -->
-      <div v-if="this.questionList[questionNo-1].type == 3">
+      <div class="bg3" v-if="this.questionList[questionNo-1].type == 3">
         <!-- คำถาม -->
-        <div
-          class="questionzone bg-orange-1 text-center q-pa-md"
-        >{{this.questionList[questionNo-1].question}}</div>
-        <!-- answer -->
-        <div class="row" v-if="!answerMode">
-          <div class="q-pa-md col-6 cursor-pointer" @click="answer(1)">
-            1.
-            <img :src="this.questionList[questionNo-1].answer1URL" alt class="sizeimg" />
+        <div class="q-pt-sm">
+          <div
+            class="questionzone bg2 text-left q-pa-md text-h5"
+          >{{this.questionList[questionNo-1].question}}</div>
+          <!-- answer -->
+          <div class="row q-px-xl q-pt-sm" v-if="!answerMode ">
+            <div class="q-px-sm col-6 cursor-pointer">
+              <q-btn
+                no-caps
+                dense
+                style="width:100%"
+                class="choice1 bg1 col-12 q-my-sm cursor-pointer row"
+                @click="answer(1)"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-motorcycle" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6 cursor-pointer">
+              <q-btn
+                no-caps
+                dense
+                style="width:100%"
+                class="choice2 bg7 col-12 q-my-sm cursor-pointer row"
+                @click="answer(2)"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-car-side" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-md"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6 cursor-pointer">
+              <q-btn
+                no-caps
+                dense
+                style="width:100%"
+                class="choice3 bg6 col-12 q-my-sm cursor-pointer row"
+                @click="answer(3)"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-helicopter" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-md"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer3URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6 cursor-pointer">
+              <q-btn
+                no-caps
+                dense
+                style="width:100%"
+                class="choice4 bg8 col-12 q-my-sm cursor-pointer row"
+                @click="answer(4)"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-plane" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-md"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
           </div>
-          <div class="q-pa-md col-6 cursor-pointer" @click="answer(2)">
-            2.
-            <img :src="this.questionList[questionNo-1].answer2URL" alt class="sizeimg" />
-          </div>
-          <div class="q-pa-md col-6 cursor-pointer" @click="answer(3)">
-            3.
-            <img :src="this.questionList[questionNo-1].answer3URL" alt class="sizeimg" />
-          </div>
-          <div class="q-pa-md col-6 cursor-pointer" @click="answer(4)">
-            4.
-            <img :src="this.questionList[questionNo-1].answer4URL" alt class="sizeimg" />
-          </div>
-        </div>
-        <!-- answer -->
-        <!-- answer -->
-        <div class="col-12 row justify-center" v-if="answerMode">
-          <div class="q-pa-md col-6">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[0]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[0]==1" />
-            <img :src="this.questionList[questionNo-1].answer1URL" alt class="sizeimg" />
-          </div>
-          <div class="q-pa-md col-6">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[1]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[1]==1" />
-            <img :src="this.questionList[questionNo-1].answer2URL" alt class="sizeimg" />
-          </div>
-          <div class="q-pa-md col-6">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[2]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[2]==1" />
-            <img :src="this.questionList[questionNo-1].answer3URL" alt class="sizeimg" />
-          </div>
-          <div class="q-pa-md col-6">
-            <q-icon name="fas fa-times" color="red" v-if="showMark[3]==2" />
-            <q-icon name="fas fa-check" color="green" v-if="showMark[3]==1" />
-            <img :src="this.questionList[questionNo-1].answer4URL" alt class="sizeimg" />
+          <!-- answer -->
+          <!-- <div class="col-12 row q-px-xl q-pt-sm justify-center" v-if="answerMode">
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+                v-if="showMark[0]==2"
+              >
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-times" color="white " class="brx" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[0]==1">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-check" color="white" class="brx" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px ">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[0]==0">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-motorcycle" color="white" class="brx" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+                v-if="showMark[1]==2"
+              >
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-times" color="white" class="brx" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[1]==1">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-check" color="white" class="brx" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[1]==0">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-car-side" color="white" class="brx" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+                v-if="showMark[2]==2"
+              >
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-times" color="white" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer3URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[2]==1">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-check" color="white" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer3URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[2]==0">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-helicopter" color="white" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer3URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+                v-if="showMark[3]==2"
+              >
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-times" color="white" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceTrue3 bg5 col-12 q-my-sm row" v-if="showMark[3]==1">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-check" color="white" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn no-caps dense class="choiceNon3 bg9 col-12 q-my-sm row" v-if="showMark[3]==0">
+                <div class="col-3" style="width:110px ">
+                  <q-icon size="50px" name="fas fa-plane" color="white" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div class="text-h5 q-px-md absolute-center" align="left" style="width:100%">
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+          </div>-->
+          <div class="col-12 row q-px-xl q-pt-sm justify-center" v-if="answerMode">
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[0]==2"
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-times" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[0]==1"
+                class="choiceTrue3 bg5 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-check" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[0]==0"
+                class="choiceNon3 bg9 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-motorcycle" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer1URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[1]==2"
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-times" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[1]==1"
+                class="choiceTrue3 bg5 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-check" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[1]==0"
+                class="choiceNon3 bg9 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-helicopter" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[2]==2"
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-times" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer3URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[2]==1"
+                class="choiceTrue3 bg5 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-check" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer3URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[2]==0"
+                class="choiceNon3 bg9 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-helicopter" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer2URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
+            <div class="q-px-sm col-6">
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[3]==2"
+                class="choiceFalse3 bg4 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-times" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[3]==1"
+                class="choiceTrue3 bg5 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-check" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+              <q-btn
+                no-caps
+                dense
+                style="width:100% "
+                v-if="showMark[3]==0"
+                class="choiceNon3 bg9 col-12 q-my-sm row"
+              >
+                <div class="col-3" style="width:110px  ">
+                  <q-icon size="50px" color="white" name="fas fa-plane" />
+                </div>
+                <div class="col bg-white box relative-position" style="height:200px">
+                  <div
+                    class="text-h5 q-px-md absolute-center q-py-sm"
+                    align="center"
+                    style="width:100%"
+                  >
+                    <img
+                      :src="this.questionList[questionNo-1].answer4URL"
+                      alt
+                      class="sizeimg q-pa-md"
+                    />
+                  </div>
+                </div>
+              </q-btn>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- ตัวบอกข้อ -->
-      <div class="col-12 text-center">
+      <div class="col-12 text-center bg3 q-pa-md">
         <q-icon name="fas fa-circle" class="q-px-md" size="22px" color="grey" v-if="questionNo==1" />
         <span v-if="questionNo >=2 ">
           <q-icon name="fas fa-circle" class="q-px-md" color="green" v-if="userAnswer[0].answer" />
@@ -228,10 +1237,11 @@
             switch-toggle-side
             expand-separator
             :icon="userAnswer[i-1].answer?'fas fa-check' : 'fas fa-times'"
-            :label="questionList[i-1].question"
+            :label="'คำถามที่ '+ i"
           >
             <q-card>
               <q-card-section>
+                <div>{{questionList[i-1].question}}</div>
                 <!-- รูปภาพกรณี 2 -->
                 <div v-if="questionList[i-1].type ==2">
                   <img :src="questionList[i-1].questionURL" style="width:80%" />
@@ -368,6 +1378,7 @@
       </div>
     </div>
   </div>
+  <!-- โจทย์แบบ 1  -->
 </template>
 
 <script>
@@ -434,7 +1445,6 @@ export default {
           .doc("Server")
           .collection("data")
           .where("section", "==", sectionId)
-          // .where("type","==",3)
           .get()
           .then(doc => {
             doc.forEach(data => {
@@ -487,11 +1497,11 @@ export default {
       setTimeout(() => {
         this.questionNo++;
         this.answerMode = false;
-      }, 1000);
+      }, 3000);
       if (this.questionNo >= 5) {
         setTimeout(() => {
           this.mode = 3;
-        }, 1000);
+        }, 3000);
       }
     },
     backToMenu() {
@@ -519,25 +1529,91 @@ export default {
 </script>
 
 <style scoped>
-.mainBox {
-  width: 1000px;
-  height: 600px;
+.box {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.mainbox {
+  border-radius: 5px;
+  width: 1200px;
+  margin: auto;
 }
 .questionzone {
-  width: 90%;
-  height: 70px;
+  width: 92%;
   margin: auto;
 }
 .choice {
   border: 1px solid black;
-  width: 80%;
+  width: 100%;
   text-align: center;
   border-radius: 10px;
 }
 .sizeimg {
   width: 350px;
+  height: 200px;
+  object-fit: scale-down;
 }
 .barlinear {
   width: 700px;
+}
+.choice1 {
+  border: 4px solid #f59085;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choice2 {
+  border: 4px solid #67c7c6;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choice3 {
+  border: 4px solid #0d5d76;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choice4 {
+  border: 4px solid #efb71c;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choiceFalse {
+  border: 4px solid #c74c56;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choiceTrue {
+  border: 4px solid #0a9e9c;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choiceNon {
+  border: 4px solid #a0a4a8;
+  width: 92%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choiceFalse3 {
+  border: 4px solid #c74c56;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choiceTrue3 {
+  border: 4px solid #0a9e9c;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+}
+.choiceNon3 {
+  border: 4px solid #a0a4a8;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
 }
 </style>

@@ -53,7 +53,7 @@
         </div>
       </div>
       <div>
-        <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{versionData}}</span>
+        <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{version}}</span>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
       </div>
     </div>
     <div>
-      <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{versionData}}</span>
+      <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{version}}</span>
     </div>
   </div>
 </template>
@@ -119,7 +119,6 @@ import { db } from "../router/index.js";
 export default {
   data() {
     return {
-      versionData: "",
       input: {
         username: "",
         password: ""
@@ -127,14 +126,6 @@ export default {
     };
   },
   methods: {
-    loadVersion() {
-      db.collection("version")
-        .doc("backend")
-        .get()
-        .then(doc => {
-          this.versionData = doc.data().version;
-        });
-    },
     login() {
       let userData = {
         schoolKey: ""
@@ -208,9 +199,7 @@ export default {
       }
     }
   },
-  mounted() {
-    this.loadVersion();
-  }
+  mounted() {}
 };
 </script>
 

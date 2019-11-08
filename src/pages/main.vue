@@ -183,6 +183,16 @@ export default {
     };
   },
   methods: {
+    loadVersion() {
+      this.snapVersion = db
+        .collection("version")
+        .doc("review")
+        .onSnapshot(data => {
+          if (this.version != data.data().version) {
+            window.location.reload(true);
+          }
+        });
+    },
     logout() {
       this.notifyGreen("ออกจากระบบ");
       this.$q.localStorage.set("studentData", "");
@@ -218,6 +228,7 @@ export default {
   },
   mounted() {
     this.loadScore();
+    this.loadVersion();
   }
 };
 </script>

@@ -37,7 +37,9 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <!-- <div v-if="mode==1">Loading...</div> -->
+    <div v-if="mode==1" class="absolute-center">
+      <q-spinner-dots color="amber-2" size="100px" />
+    </div>
     <div v-if="mode==2" class="mainbox">
       <div style="height:100px"></div>
       <div>

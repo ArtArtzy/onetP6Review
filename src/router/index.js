@@ -22,7 +22,7 @@ Vue.use(VueRouter)
 Vue.mixin({
   data() {
     return {
-      version: "0.0.1",
+      version: "0.0.3",
     };
   },
   methods: {
@@ -68,7 +68,7 @@ Vue.mixin({
  * directly export the Router instantiation
  */
 
-export default function ( /* { store, ssrContext } */ ) {
+export default function ( /* { store, ssrContext } */) {
   const Router = new VueRouter({
     scrollBehavior: () => ({
       x: 0,

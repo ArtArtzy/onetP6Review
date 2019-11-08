@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "onet-p6"
+  },
+  "targets": {
+    "onet-p6": {
+      "hosting": {
+        "onetreview": [
+          "o-net-review"
+        ]
+      }
+    }
+  }
+}

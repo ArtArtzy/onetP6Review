@@ -42,7 +42,7 @@ module.exports = function (ctx) {
       all: false,
 
       components: ['QBtn', 'QInput', 'QIcon', 'QKnob', 'QList', 'QExpansionItem', 'QCard', 'QCardSection', 'QSeparator', 'QLinearProgress', "QDialog",
-        'QCardActions', 'QSpinner', 'QSpinnerDots',],
+        'QCardActions', 'QSpinner', 'QSpinnerDots', 'QItemSection'],
       directives: ["ClosePopup"],
 
       // Quasar plugins

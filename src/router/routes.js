@@ -13,7 +13,11 @@ const routes = [{
   component: () => import('pages/review.vue'),
   name: "review"
 },
-
+{
+  path: '/welcomeback',
+  component: () => import('pages/welcomeback.vue'),
+  name: "welcomeback"
+},
 ]
 
 // Always leave this as last one

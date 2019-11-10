@@ -197,9 +197,18 @@ export default {
               });
           });
       }
+    },
+    checklogin() {
+      let local = this.$q.localStorage.getItem("studentData");
+      if (local == "" || local == null) {
+      } else {
+        this.$router.push("/welcomeback");
+      }
     }
   },
-  mounted() {}
+  mounted() {
+    this.checklogin();
+  }
 };
 </script>
 

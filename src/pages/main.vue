@@ -227,6 +227,10 @@ export default {
     }
   },
   mounted() {
+    if (this.studentData == "") {
+      this.$router.push("/");
+      return;
+    }
     this.loadScore();
     this.loadVersion();
   }

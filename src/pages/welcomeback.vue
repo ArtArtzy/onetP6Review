@@ -1,24 +1,48 @@
 <template>
   <div>
     <!-- main div -->
-    <div class="row bgImage content-start absolute-center">
+    <div class="row bgImage">
       <!-- รูปภาพ -->
-      <div class="fixed-center q-pa-md box bg2">
-        <div class="text-center">
-          <img class="logo" src="../statics/image/Review.png" />
-        </div>
-        <div class="text-h6 text-center q-pb-md">{{studentData.name}} {{studentData.surname}}</div>
-
-        <!-- Login Btn -->
+      <div class="absolute-center">
         <div>
-          <q-btn @click="login()" label="เข้าสู่ระบบ" class="btnlogin q-mt-sm btn" />
-        </div>
-        <div @click="logout()" class="text-center q-pa-md">
-          <u class="cursor-pointer">
-            <span>เข้าสู่ระบบด้วยบัญชีผู้ใช้อื่น</span>
-          </u>
+          <div class="relative-position">
+            <div class="absolute-center q-pt-sm" style="width:70%;">
+              <img style="width:100%;margin-bottom:-10px" src="../statics/image/Review.png" />
+            </div>
+            <div>
+              <img
+                style="width:100%;max-width:450px;margin-bottom:-10px"
+                src="../statics/image/BarPC.png"
+              />
+            </div>
+          </div>
+          <div class="box bg3">
+            <div class="q-px-xl q-pt-md">
+              <div class="q-py-sm">
+                <span></span>
+              </div>
+              <div class="q-py-sm">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="text-center q-pt-md q-px-xl">
+              <q-btn
+                class="bg5 text-white"
+                @click="login()"
+                style="width:100%"
+                label="เข้าสู่ระบบ"
+              />
+            </div>
+            <div @click="logout()" class="text-center q-pa-md">
+              <u class="cursor-pointer">
+                <span>เข้าสู่ระบบด้วยบัญชีผู้ใช้อื่น</span>
+              </u>
+            </div>
+          </div>
         </div>
       </div>
+      <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{version}}</span>
     </div>
   </div>
 </template>
@@ -62,9 +86,10 @@ export default {
   background: #0f2753;
 }
 .box {
-  width: 400px;
-  border: 1px solid black;
-  border-radius: 15px;
-  text-align: center;
+  width: 450px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border: 4px solid #353535;
+  border-top: none;
 }
 </style>

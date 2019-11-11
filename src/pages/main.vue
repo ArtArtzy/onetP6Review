@@ -1,13 +1,12 @@
 <template>
   <div>
-    <div class="topBar q-pt-sm q-pl-md shadow-3 row">
-      <div class="col-9 desktop-only text-h5">Winner O-NET Review</div>
-      <div class="col-9 mobile-only text-h6">Winner O-NET Review</div>
-      <div class="col-3 q-pr-md" align="right">
-        <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
-      </div>
-    </div>
     <div class="desktop-only bgImage">
+      <div class="topBar q-pt-sm q-pl-md shadow-3 row">
+        <div class="col-9 text-h5">Winner O-NET Review</div>
+        <div class="col-3 q-pr-md" align="right">
+          <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
+        </div>
+      </div>
       <q-dialog v-model="confirm" persistent>
         <q-card style="width:400px; border: 5px solid black;border-radius:10px ">
           <q-card-section class="row items-center">
@@ -111,6 +110,18 @@
       </div>
     </div>
     <div class="mobile-only bgImage">
+      <div class="topBarMobile q-pa-sm q-pl-md shadow-3 row">
+        <div class="col-10 titleBar q-pt-xs">Winner O-NET Review</div>
+        <div class="col" align="right">
+          <q-btn
+            style="width:100%; max-width:100px;height:100%"
+            color="negative"
+            icon="fas fa-sign-out-alt"
+            push
+            @click="confirm=true"
+          />
+        </div>
+      </div>
       <div>
         <div class="relative-position" style="height:70px">
           <div class="absolute-center text-white textTitle">หน้าหลัก</div>
@@ -284,5 +295,12 @@ export default {
   height: 50px;
   background-color: #0a9e9c;
   color: white;
+}
+.topBarMobile {
+  background-color: #0a9e9c;
+  color: white;
+}
+.titleBar {
+  font-size: 5vw;
 }
 </style>

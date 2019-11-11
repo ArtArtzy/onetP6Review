@@ -229,7 +229,7 @@ export default {
   width: 450px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  border: 2px solid black;
+  border: 4px solid #353535;
   border-top: none;
 }
 </style>

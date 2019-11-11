@@ -1849,61 +1849,51 @@ export default {
   width: 700px;
 }
 .choice1 {
-  border: 4px solid #f59085;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choice2 {
-  border: 4px solid #67c7c6;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choice3 {
-  border: 4px solid #0d5d76;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choice4 {
-  border: 4px solid #efb71c;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choiceFalse {
-  border: 4px solid #c74c56;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choiceTrue {
-  border: 4px solid #0a9e9c;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choiceNon {
-  border: 4px solid #a0a4a8;
   width: 92%;
   text-align: center;
   border-radius: 10px;
 }
 .choiceFalse3 {
-  border: 4px solid #c74c56;
   width: 100%;
   text-align: center;
   border-radius: 10px;
 }
 .choiceTrue3 {
-  border: 4px solid #0a9e9c;
   width: 100%;
   text-align: center;
   border-radius: 10px;
 }
 .choiceNon3 {
-  border: 4px solid #a0a4a8;
   width: 100%;
   text-align: center;
   border-radius: 10px;

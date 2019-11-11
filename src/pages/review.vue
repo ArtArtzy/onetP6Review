@@ -43,10 +43,10 @@
     <div v-if="mode==1" class="absolute-center">
       <q-spinner-dots color="amber-2" size="100px" />
     </div>
-    <div v-if="mode==2" class="mainbox">
-      <div style="height:100px"></div>
+    <div style="height:100px"></div>
+    <div v-if="mode==2" class="mainbox bg3">
       <div>
-        <div class="barlinear row q-px-xl q-pt-md bg3" style="width:100%">
+        <div class="barlinear row q-px-xl q-pt-md" style="width:100%">
           <div class="col-10 row" style="height:10px">
             <q-linear-progress
               class="color1"
@@ -115,7 +115,7 @@
 
         <!-- <div>คะแนนทั้งหมด {{totalAllScore}}</div> -->
       </div>
-      <div v-if="this.questionList[questionNo-1].type == 1" class="q-pt-sm row justify-center bg3">
+      <div v-if="this.questionList[questionNo-1].type == 1" class="q-pt-sm row justify-center">
         <!-- คำถาม -->
 
         <div class="questionzone text-center text-h5">
@@ -351,7 +351,7 @@
       <!-- โจทย์แบบ 2 -->
       <div v-if="this.questionList[questionNo-1].type == 2">
         <!-- คำถาม -->
-        <div class="row bg3">
+        <div class="row">
           <div class="col-6 row q-py-md q-pl-xl q-pr-md">
             <div class="bg2" style="width:100%">
               <div
@@ -1052,7 +1052,7 @@
       </div>
 
       <!-- ตัวบอกข้อ -->
-      <div class="col-12 text-center bg3 q-pa-md">
+      <div class="col-12 text-center q-pa-md">
         <q-icon name="fas fa-circle" class="q-px-md" size="22px" color="grey" v-if="questionNo==1" />
         <span v-if="questionNo >=2 ">
           <q-icon name="fas fa-circle" class="q-px-md" color="green" v-if="userAnswer[0].answer" />

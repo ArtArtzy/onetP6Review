@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="desktop-only bgImage">
-      <div class="topBar q-pt-sm q-pl-md text-h5 shadow-3 row">
-        <div class="col-9">Winner O-NET Review</div>
-        <div class="col-3 q-pr-md" align="right">
-          <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
-        </div>
+    <div class="topBar q-pt-sm q-pl-md shadow-3 row">
+      <div class="col-9 desktop-only text-h5">Winner O-NET Review</div>
+      <div class="col-9 mobile-only text-h6">Winner O-NET Review</div>
+      <div class="col-3 q-pr-md" align="right">
+        <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
       </div>
+    </div>
+    <div class="desktop-only bgImage">
       <q-dialog v-model="confirm" persistent>
         <q-card style="width:400px; border: 5px solid black;border-radius:10px ">
           <q-card-section class="row items-center">
@@ -38,67 +39,70 @@
           </q-card-actions>
         </q-card>
       </q-dialog>
-      <div class="mainbox bg3 absolute-center">
-        <div class="row q-pt-xl">
-          <div class="col-5 relative-position q-pl-md">
-            <div class="q-pa-md q-pl-xl">
-              <img style="width:400px;" src="../statics/image/main/PC.png" />
-            </div>
-            <div class="absolute-center text-center" style="width:100%">
-              <div style="height:90px"></div>
-              <div class="text-h4">{{studentData.name}}</div>
+      <div>
+        <div style="height:100px"></div>
+        <div class="mainbox bg3">
+          <div class="row q-pt-xl">
+            <div class="col-5 relative-position q-pl-md">
+              <div class="q-pa-md q-pl-xl">
+                <img style="width:400px;" src="../statics/image/main/PC.png" />
+              </div>
+              <div class="absolute-center text-center" style="width:100%">
+                <div style="height:90px"></div>
+                <div class="text-h4">{{studentData.name}}</div>
 
-              <div>
-                <br />
-                <div class="text-h4">คะแนนสะสม</div>
-                <br />
-                <div class="text-h3">{{totalScore}}</div>
+                <div>
+                  <br />
+                  <div class="text-h4">คะแนนสะสม</div>
+                  <br />
+                  <div class="text-h3">{{totalScore}}</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-7 q-px-md">
-            <div class="box-menu">
-              <div class="row">
-                <div class="col-12 q-pa-sm" v-for="i in 8" :key="i">
-                  <q-btn
-                    rounded
-                    style="height:120px;width:100%"
-                    class="btn bg-white text-h5"
-                    @click="reviewPageBtn(i)"
-                  >
-                    <div class="row" style="width:100%;height:100px">
-                      <div class="col-2">
-                        <div>
-                          <img
-                            style="width:100px;height:100px"
-                            :src="'../statics/image/main/'+i+'.png'"
-                          />
+            <div class="col-7 q-px-md">
+              <div class="box-menu">
+                <div class="row">
+                  <div class="col-12 q-pa-sm" v-for="i in 8" :key="i">
+                    <q-btn
+                      rounded
+                      style="height:120px;width:100%"
+                      class="btn bg-white text-h5"
+                      @click="reviewPageBtn(i)"
+                    >
+                      <div class="row" style="width:100%;height:100px">
+                        <div class="col-2">
+                          <div>
+                            <img
+                              style="width:100px;height:100px"
+                              :src="'../statics/image/main/'+i+'.png'"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-7 text-left q-pt-sm">
+                          <div class="q-pt-lg q-px-md">ทบทวนครั้งที่ {{i}} (คาบ 1 - {{i}})</div>
+                        </div>
+                        <div class="col-3" align="left">
+                          <div class="q-pt-lg">
+                            <q-icon
+                              name="fas fa-star"
+                              v-if="scoreData[i-1] >= star1"
+                              class="q-ma-xs color1"
+                            />
+                            <q-icon
+                              name="fas fa-star"
+                              v-if="scoreData[i-1] >= star2"
+                              class="q-ma-xs color1"
+                            />
+                            <q-icon
+                              name="fas fa-star"
+                              v-if="scoreData[i-1] >= star3"
+                              class="q-ma-xs color1"
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div class="col-7 text-left q-pt-sm">
-                        <div class="q-pt-lg q-px-md">ทบทวนครั้งที่ {{i}} (คาบ 1 - {{i}})</div>
-                      </div>
-                      <div class="col-3" align="left">
-                        <div class="q-pt-lg">
-                          <q-icon
-                            name="fas fa-star"
-                            v-if="scoreData[i-1] >= star1"
-                            class="q-ma-xs color1"
-                          />
-                          <q-icon
-                            name="fas fa-star"
-                            v-if="scoreData[i-1] >= star2"
-                            class="q-ma-xs color1"
-                          />
-                          <q-icon
-                            name="fas fa-star"
-                            v-if="scoreData[i-1] >= star3"
-                            class="q-ma-xs color1"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </q-btn>
+                    </q-btn>
+                  </div>
                 </div>
               </div>
             </div>

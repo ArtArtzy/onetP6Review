@@ -123,9 +123,6 @@
         </div>
       </div>
       <div>
-        <div class="relative-position" style="height:70px">
-          <div class="absolute-center text-white textTitle">หน้าหลัก</div>
-        </div>
         <div class="bg1 q-px-sm q-pb-md">
           <div class="q-pa-md text-center textTitle">{{studentData.name}}</div>
           <div class="bg-white" style="border-radius: 5px;">

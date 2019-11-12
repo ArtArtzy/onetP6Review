@@ -125,8 +125,8 @@ export default {
   data() {
     return {
       input: {
-        username: "1073163",
-        password: "6406"
+        username: "",
+        password: ""
       }
     };
   },

@@ -48,7 +48,7 @@
       <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{version}}</span>
     </div>
     <!-- For mobile only -->
-    <div class="mobile-only row bgImage">
+    <div class="mobile-only row orientation-portrait">
       <!-- รูปภาพ -->
       <div class="absolute-center q-px-md" style="width:100%;max-width: 450px;">
         <div>
@@ -93,11 +93,16 @@
       </div>
       <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{version}}</span>
     </div>
+    <rotate />
   </div>
 </template>
 
 <script>
+import rotate from "../components/dontsleep.vue";
 export default {
+  components: {
+    rotate
+  },
   data() {
     return {
       studentData: this.$q.localStorage.getItem("studentData")

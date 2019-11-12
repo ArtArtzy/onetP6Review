@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="desktop-only bgImage">
+    <div class="desktop-only">
       <div class="topBar q-pt-sm q-pl-md shadow-3 row">
         <div class="col-9 text-h5">Winner O-NET Review</div>
         <div class="col-3 q-pr-md" align="right">
@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    <div class="mobile-only bgImage">
+    <div class="mobile-only orientation-portrait">
       <div class="topBarMobile q-pa-sm q-pl-md shadow-3 row">
         <div class="col-10 titleBar q-pt-xs">Winner O-NET Review</div>
         <div class="col" align="right">
@@ -177,12 +177,17 @@
         </div>
       </div>
     </div>
+    <rotate />
   </div>
 </template>
 
 <script>
+import rotate from "../components/dontsleep.vue";
 import { db } from "../router/index.js";
 export default {
+  components: {
+    rotate
+  },
   data() {
     return {
       studentData: this.$q.localStorage.getItem("studentData"),
@@ -262,7 +267,6 @@ export default {
   width: 1200px;
   height: 650px;
   margin: auto;
-  border: 1px solid black;
 }
 .btn {
   width: 500px;

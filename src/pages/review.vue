@@ -1,12 +1,31 @@
 <template>
   <div class="text-body1">
     <div class="text-body1 desktop-only">
-      <div class="topBar q-pt-sm q-pl-md text-h5 shadow-3 row">
-        <div class="col-1">
+      <div class="topBar q-pt-sm q-pl-md text-h5 shadow-3 row justify-between">
+        <div>
           <q-btn color="primary" icon="fas fa-home" push @click="backToMenu()" />
         </div>
-        <div class="col-10" align="center">Winner O-NET Review</div>
-        <div class="col-1 q-pr-md" align="right">
+        <div align="center">Winner O-NET Review</div>
+
+        <div class="q-pr-md" align="right">
+          <span>
+            <q-btn
+              v-show="soundOn == true"
+              class="q-mx-sm bg6"
+              icon="fas fa-volume-up"
+              push
+              @click="soundOn = false "
+            />
+
+            <q-btn
+              v-show=" soundOn == false"
+              class="q-mx-sm bg6"
+              icon="fas fa-volume-mute"
+              push
+              @click="soundOn = true"
+            />
+          </span>
+
           <q-btn color="negative" icon="fas fa-sign-out-alt" push @click="confirm=true" />
         </div>
       </div>
@@ -123,7 +142,8 @@
             <div
               class="bg2 q-pa-md"
               style="border-radius: 5px;"
-            >{{this.questionList[questionNo-1].question}}</div>
+              v-html="this.questionList[questionNo-1].question"
+            ></div>
           </div>
           <!-- choice -->
           <div class="col-12 row justify-center q-pt-md" v-if="!answerMode">
@@ -1159,61 +1179,53 @@
           </div>
 
           <div class="row bg2 q-mx-xl">
-            <div class="col-3 q-py-sm text-center">
-              คะแนนปัจจุบัน
-              <br />
-              {{totalScore}}
-            </div>
-            <div class="col" align="center">
-              <div>
+            <div class="col row justify-between">
+              <div style="max-width:100px;width:100%"></div>
+              <div class="q-pt-sm" align="center">
+                คะแนนปัจจุบัน
+                {{totalScore}}
+              </div>
+              <div align="right">
                 <q-icon
                   name="fas fa-star"
-                  class="q-ma-md color1"
+                  class="q-ma-sm color1"
                   size="md"
                   v-if="totalScore >= star1*10"
                 />
                 <q-icon
                   name="fas fa-star"
-                  class="q-ma-md"
+                  class="q-ma-sm"
                   color="grey"
                   size="md"
                   v-if="totalScore < star1*10"
                 />
                 <q-icon
                   name="fas fa-star"
-                  class="q-ma-md color1"
+                  class="q-ma-sm color1"
                   size="md"
                   v-if="totalScore >= star2*10"
                 />
                 <q-icon
                   name="fas fa-star"
-                  class="q-ma-md"
+                  class="q-ma-sm"
                   color="grey"
                   size="md"
                   v-if="totalScore < star2*10"
                 />
                 <q-icon
                   name="fas fa-star"
-                  class="q-ma-md color1"
+                  class="q-ma-sm color1"
                   size="md"
                   v-if="totalScore >= star3*10"
                 />
                 <q-icon
                   name="fas fa-star"
-                  class="q-ma-md"
+                  class="q-ma-sm"
                   color="grey"
                   size="md"
                   v-if="totalScore < star3*10"
                 />
               </div>
-            </div>
-            <div
-              style="border:1px solid black"
-              class="col-2 rounded-borders bg-white q-pa-sm text-center"
-            >
-              คะแนนทั้งหมด
-              <br />
-              {{totalAllScore}}
             </div>
           </div>
           <div class="q-pa-lg q-mt-lg q-mx-lg">
@@ -1528,25 +1540,28 @@
     <!-- mobile -->
     <div class="mobile-only orientation-portrait">
       <div class="topBarMobile q-pa-sm shadow-3">
-        <div class="row">
-          <div class="col-2">
-            <q-btn
-              style="width:100%; max-width:100px;height:100%"
-              color="primary"
-              icon="fas fa-home"
-              push
-              @click="backToMenu()"
-            />
+        <div class="row justify-between">
+          <div>
+            <q-btn color="primary" icon="fas fa-home" push @click="backToMenu()" />
           </div>
-          <div class="col text-center q-pt-xs titleBar">Winner O-NET Review</div>
-          <div class="col-2" align="right">
+          <div class="text-center q-pt-xs titleBar">Winner</div>
+          <div class="row" align="right">
             <q-btn
-              style="width:100%; max-width:100px;height:100%"
-              color="negative "
-              icon="fas fa-sign-out-alt"
+              v-show="soundOn == true"
+              class="q-mx-sm bg6"
+              icon="fas fa-volume-up"
               push
-              @click="confirm=true"
+              @click="soundOn = false "
             />
+
+            <q-btn
+              v-show=" soundOn == false"
+              class="q-mx-sm bg6"
+              icon="fas fa-volume-mute"
+              push
+              @click="soundOn = true"
+            />
+            <q-btn color="negative " icon="fas fa-sign-out-alt" push @click="confirm=true" />
           </div>
         </div>
       </div>
@@ -1634,7 +1649,7 @@
                 <!-- คำถาม -->
 
                 <div class="textMobile">
-                  <div class="bg2 q-pa-md">{{this.questionList[questionNo-1].question}}</div>
+                  <div class="bg2 q-pa-md" v-html="this.questionList[questionNo-1].question"></div>
                 </div>
                 <!-- choice -->
                 <div class="col-12 row justify-center q-pt-md q-px-sm" v-if="!answerMode">
@@ -2827,11 +2842,6 @@
                   คะแนนปัจจุบัน
                   <span>{{totalScore}}</span>
                 </div>
-                <hr class="q-mx-sm" />
-                <div class="q-px-sm">
-                  คะแนนทั้งหมด
-                  <span>{{totalAllScore}}</span>
-                </div>
               </div>
             </div>
             <div class="q-pa-sm">
@@ -3171,7 +3181,8 @@ export default {
       showMark: [],
       scoreSection: 0,
       totalAllScore: 0,
-      confirm: false
+      confirm: false,
+      soundOn: true
     };
   },
   methods: {
@@ -3181,6 +3192,7 @@ export default {
       this.$router.push("/");
     },
     async loadData() {
+      this.questionList = [];
       this.mode = 1;
       this.userAnswer = [];
       this.scoreSection = 0;
@@ -3212,8 +3224,9 @@ export default {
         });
 
       //เก็บโจทย์ในเรื่องที่เกี่ยวข้อง
+
       for (let i = 1; i <= this.page; i++) {
-        let sectionId = this.sectionList[i].id;
+        let sectionId = this.sectionList[i - 1].id;
         db.collection("question")
           .doc("Server")
           .collection("data")
@@ -3231,7 +3244,7 @@ export default {
           return 0.5 - Math.random();
         });
         this.mode = 2;
-      }, 2000);
+      }, 5000);
 
       //ทำการ random เลือกข้อที่ต้องการมาทำ 5 ข้อ
       //สร้าง array ของโจทย์ที่ต้องการ
@@ -3242,7 +3255,9 @@ export default {
       this.showMark = [0, 0, 0, 0];
       if (choice == this.questionList[this.questionNo - 1].correctAnswer) {
         //กรณีตอบถูก
-        audioTrue.play();
+        if (this.soundOn) {
+          audioTrue.play();
+        }
         let dataTemp = {
           no: this.questionNo,
           userAnswer: choice,
@@ -3260,7 +3275,10 @@ export default {
           .set({ score: this.scoreData });
       } else {
         //กรณีตอบผิด
-        audioFalse.play();
+        if (this.soundOn) {
+          audioFalse.play();
+        }
+
         let dataTemp = {
           no: this.questionNo,
           userAnswer: choice,

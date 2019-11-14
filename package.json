@@ -1,8 +1,8 @@
 {
   "name": "reviewonetp6",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Winner O-NET Review",
+  "productName": "Winner O-NET Review",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
   "author": "MASTERZ <soulhunz@hotmail.com>",

@@ -88,9 +88,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar App',
-        // description: 'A Quasar Framework app',
+        name: 'Winner O-NET Review',
+        short_name: 'Winner O-NET Review',
+        description: 'Winner O-NET Review',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

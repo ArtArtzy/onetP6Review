@@ -1539,29 +1539,44 @@
     </div>
     <!-- mobile -->
     <div class="mobile-only orientation-portrait">
-      <div class="topBarMobile q-pa-sm shadow-3">
+      <div class="topBarMobile q-py-sm q-px-xs shadow-3">
         <div class="row justify-between">
           <div>
-            <q-btn color="primary" icon="fas fa-home" push @click="backToMenu()" />
+            <q-btn
+              style="width:50px"
+              color="primary"
+              icon="fas fa-home"
+              push
+              @click="backToMenu()"
+            />
           </div>
-          <div class="text-center q-pt-xs titleBar">Winner</div>
+          <div class="text-center q-px-sm q-pt-xs titleBar">ทบทวนครั้งที่ {{page}}</div>
           <div class="row" align="right">
             <q-btn
+              style="width:50px"
               v-show="soundOn == true"
-              class="q-mx-sm bg6"
+              class="q-mr-xs bg6"
               icon="fas fa-volume-up"
               push
               @click="soundOn = false "
             />
 
             <q-btn
+              style="width:50px"
               v-show=" soundOn == false"
-              class="q-mx-sm bg6"
+              class="q-mr-xs bg6"
               icon="fas fa-volume-mute"
               push
               @click="soundOn = true"
             />
-            <q-btn color="negative " icon="fas fa-sign-out-alt" push @click="confirm=true" />
+            <q-btn
+              class="q-ml-xs"
+              style="width:50px"
+              color="negative "
+              icon="fas fa-sign-out-alt"
+              push
+              @click="confirm=true"
+            />
           </div>
         </div>
       </div>
@@ -1572,12 +1587,11 @@
         </div>
 
         <div v-if="mode==2">
-          <div class="text-center q-pa-sm text-white titleBar">แบบฝึกหัดทบทวน</div>
           <div class="bg3">
             <div>
               <div>
-                <div class="row q-pa-sm" style="width:100%">
-                  <div class="col-7 row" style="height:10px">
+                <div class="row q-pa-sm q-pt-md" style="width:100%">
+                  <div class="col-sm-7 col-md-9 col-xs-7 row" style="height:10px">
                     <q-linear-progress
                       class="color1"
                       stripe
@@ -1634,7 +1648,7 @@
                       <span class="absolute-bottom-right" style="right:-11px">{{star3*10}}</span>
                     </div>
                   </div>
-                  <div class="col-5 q-pl-md">
+                  <div class="col q-pl-md">
                     <div class="text-center q-pt-xs bg2" style="height:60px; border-radius: 5px;">
                       <span>คะแนนปัจจุบัน</span>
                       <br />
@@ -1648,8 +1662,11 @@
               <div v-if="this.questionList[questionNo-1].type == 1" class="row justify-center">
                 <!-- คำถาม -->
 
-                <div class="textMobile">
-                  <div class="bg2 q-pa-md" v-html="this.questionList[questionNo-1].question"></div>
+                <div style="width:100%">
+                  <div
+                    class="bg2 q-pa-md textMobile"
+                    v-html="this.questionList[questionNo-1].question"
+                  ></div>
                 </div>
                 <!-- choice -->
                 <div class="col-12 row justify-center q-pt-md q-px-sm" v-if="!answerMode">
@@ -2249,116 +2266,105 @@
                 <div class="q-pt-sm">
                   <div
                     class="questionzone bg2 text-left q-pa-md textMobile"
+                    style="width:100%"
                   >{{this.questionList[questionNo-1].question}}</div>
                   <!-- answer -->
-                  <div class="row q-px-xl q-pt-sm" v-if="!answerMode ">
-                    <div class="q-px-sm col-6 cursor-pointer">
+                  <div class="row q-py-md q-pt-sm" v-if="!answerMode ">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
                         style="width:100%"
-                        class="choice1 bg1 col-12 q-my-sm cursor-pointer row"
+                        class="choice1 bg1 col-12 q-my-sm row"
                         @click="answer(1)"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-motorcycle" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer1URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
-                    <div class="q-px-sm col-6 cursor-pointer">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
                         style="width:100%"
-                        class="choice2 bg7 col-12 q-my-sm cursor-pointer row"
+                        class="choice2 bg7 col-12 q-my-sm row"
                         @click="answer(2)"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-car-side" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-md"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer2URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
-                    <div class="q-px-sm col-6 cursor-pointer">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
                         style="width:100%"
-                        class="choice3 bg6 col-12 q-my-sm cursor-pointer row"
+                        class="choice3 bg6 col-12 q-my-sm row"
                         @click="answer(3)"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-helicopter" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-md"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer3URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
-                    <div class="q-px-sm col-6 cursor-pointer">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
                         style="width:100%"
-                        class="choice4 bg8 col-12 q-my-sm cursor-pointer row"
+                        class="choice4 bg8 col-12 q-my-sm row"
                         @click="answer(4)"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-plane" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-md"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer4URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
                   </div>
-                  <div class="col-12 row q-px-xl q-pt-sm justify-center" v-if="answerMode">
-                    <div class="q-px-sm col-6">
+                  <div class="col-12 row q-py-md justify-center" v-if="answerMode">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
@@ -2366,19 +2372,16 @@
                         v-if="showMark[0]==2"
                         class="choiceFalse3 bg4 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-times" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer1URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2390,19 +2393,16 @@
                         v-if="showMark[0]==1"
                         class="choiceTrue3 bg5 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-check" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer1URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2414,25 +2414,22 @@
                         v-if="showMark[0]==0"
                         class="choiceNon3 bg9 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-motorcycle" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer1URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
-                    <div class="q-px-sm col-6">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
@@ -2440,19 +2437,16 @@
                         v-if="showMark[1]==2"
                         class="choiceFalse3 bg4 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-times" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer2URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2464,19 +2458,16 @@
                         v-if="showMark[1]==1"
                         class="choiceTrue3 bg5 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-check" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer2URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2488,25 +2479,22 @@
                         v-if="showMark[1]==0"
                         class="choiceNon3 bg9 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
-                          <q-icon size="50px" color="white" name="fas fa-helicopter" />
+                        <div class="col-3" style="width:100px  ">
+                          <q-icon size="50px" color="white" name="fas fa-car-side" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer2URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
-                    <div class="q-px-sm col-6">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
@@ -2514,19 +2502,16 @@
                         v-if="showMark[2]==2"
                         class="choiceFalse3 bg4 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-times" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer3URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2538,19 +2523,16 @@
                         v-if="showMark[2]==1"
                         class="choiceTrue3 bg5 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-check" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer3URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2562,25 +2544,22 @@
                         v-if="showMark[2]==0"
                         class="choiceNon3 bg9 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-helicopter" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
-                              :src="this.questionList[questionNo-1].answer2URL"
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
+                              :src="this.questionList[questionNo-1].answer3URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
                       </q-btn>
                     </div>
-                    <div class="q-px-sm col-6">
+                    <div class="q-px-sm col-md-6 col-xs-12">
                       <q-btn
                         no-caps
                         dense
@@ -2588,19 +2567,16 @@
                         v-if="showMark[3]==2"
                         class="choiceFalse3 bg4 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-times" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer4URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2612,19 +2588,16 @@
                         v-if="showMark[3]==1"
                         class="choiceTrue3 bg5 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-check" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer4URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2636,19 +2609,16 @@
                         v-if="showMark[3]==0"
                         class="choiceNon3 bg9 col-12 q-my-sm row"
                       >
-                        <div class="col-3" style="width:110px  ">
+                        <div class="col-3" style="width:100px  ">
                           <q-icon size="50px" color="white" name="fas fa-plane" />
                         </div>
                         <div class="col bg-white box relative-position" style="height:200px">
-                          <div
-                            class="textMobile q-px-md absolute-center q-py-sm"
-                            align="center"
-                            style="width:100%"
-                          >
+                          <div align="center" style="width:100%">
                             <img
+                              class="q-pt-md"
+                              style="width:100%;max-width:350px;height:190px"
                               :src="this.questionList[questionNo-1].answer4URL"
                               alt
-                              class="sizeimg q-pa-md"
                             />
                           </div>
                         </div>
@@ -2779,9 +2749,8 @@
         </div>
         <!-- summary -->
         <div class="row" v-if="mode==3">
-          <div class="q-pa-md text-white col-12 text-center">แบบฝึกหัดทบทวน</div>
           <div class="bg3" style="width:100%">
-            <div class="row">
+            <div class="row q-pt-sm">
               <div class="q-pa-sm text-center">
                 <q-knob
                   readonly
@@ -2862,7 +2831,10 @@
                       <div>{{questionList[i-1].question}}</div>
                       <!-- รูปภาพกรณี 2 -->
                       <div v-if="questionList[i-1].type ==2">
-                        <img :src="questionList[i-1].questionURL" class="sizeimg2" />
+                        <img
+                          :src="questionList[i-1].questionURL"
+                          style="width:100%;max-width:400px"
+                        />
                       </div>
                       <!-- แสดงคำตอบในกรณี 1 และ 2 -->
                       <div v-if="questionList[i-1].type !=3 ">
@@ -3133,13 +3105,13 @@
               </q-list>
               <div class="q-pa-md" align="center">
                 <q-btn
-                  class="bg5 q-ma-xs text-white"
+                  class="bg5 q-ma-sm text-white"
                   style="width:190px"
                   label="เริ่มทำต่อ"
                   @click="doIt()"
                 />
                 <q-btn
-                  class="bg-white q-ma-xs"
+                  class="bg-white q-ma-sm"
                   style="width:190px"
                   label="กลับเมนูหลัก"
                   @click="backToMenu()"
@@ -3771,9 +3743,14 @@ export default {
   color: white;
 }
 .titleBar {
-  font-size: 5vw;
+  font-size: 20px;
 }
 .textMobile {
-  font-size: 5vw;
+  font-size: 20px;
+}
+@media screen and (min-width: 1200px) {
+  div {
+    font-size: 5vw;
+  }
 }
 </style>

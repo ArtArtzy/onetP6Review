@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div class="mobile-only orientation-portrait">
+    <div class="mobile-only">
       <div class="absolute-center q-px-md" style="width:100%;max-width: 450px;">
         <div>
           <div class="relative-position">
@@ -111,17 +111,12 @@
     <div>
       <span class="absolute-bottom-right q-px-md q-py-sm text-white">V {{version}}</span>
     </div>
-    <rotate />
   </div>
 </template>
 
 <script>
-import rotate from "../components/dontsleep.vue";
 import { db } from "../router/index.js";
 export default {
-  components: {
-    rotate
-  },
   data() {
     return {
       input: {
@@ -227,7 +222,7 @@ export default {
 
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  border: 2px solid black;
+  border: 2px solid #353535;
   border-top: none;
 }
 .box {

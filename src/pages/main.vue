@@ -140,35 +140,37 @@
             class="bg-white q-pt-xs"
           >
             <div class="row">
-              <div class="col-3">
-                <img class="q-pa-sm" style="width:100%" :src="'../statics/image/main/'+i+'.png'" />
+              <div class>
+                <img class="q-pa-sm" style="width:100px" :src="'../statics/image/main/'+i+'.png'" />
               </div>
-              <div class="col-5 q-pa-sm textTitle">
-                ทบทวนครั้งที่ {{i}}
-                <br />
-                (คาบ 1 - {{i}})
-              </div>
-              <div class="col-4 relative-position">
-                <div class="absolute-center" style="width:100%">
-                  <div class="row q-pb-sm">
-                    <q-icon
-                      size="sm"
-                      name="fas fa-star"
-                      v-if="scoreData[i-1] >= star1"
-                      class="q-ma-xs color1"
-                    />
-                    <q-icon
-                      size="sm"
-                      name="fas fa-star"
-                      v-if="scoreData[i-1] >= star2"
-                      class="q-ma-xs color1"
-                    />
-                    <q-icon
-                      size="sm"
-                      name="fas fa-star"
-                      v-if="scoreData[i-1] >= star3"
-                      class="q-ma-xs color1"
-                    />
+              <div class="row col q-px-sm">
+                <div class="col-6 textTitle">
+                  ทบทวนครั้งที่ {{i}}
+                  <br />
+                  (คาบ 1 - {{i}})
+                </div>
+                <div class="col-6 relative-position">
+                  <div class="absolute-center" style="width:100%">
+                    <div class="row justify-center">
+                      <q-icon
+                        size="sm"
+                        name="fas fa-star"
+                        v-if="scoreData[i-1] >= star1"
+                        class="q-ma-xs color1"
+                      />
+                      <q-icon
+                        size="sm"
+                        name="fas fa-star"
+                        v-if="scoreData[i-1] >= star2"
+                        class="q-ma-xs color1"
+                      />
+                      <q-icon
+                        size="sm"
+                        name="fas fa-star"
+                        v-if="scoreData[i-1] >= star3"
+                        class="q-ma-xs color1"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -256,11 +258,11 @@ export default {
 
 <style  scoped>
 .textTitle {
-  font-size: 5vw;
+  font-size: 20px;
 }
 
 .title {
-  font-size: 10vw;
+  font-size: 20px;
 }
 .mainbox {
   border-radius: 5px;
@@ -302,6 +304,11 @@ export default {
   color: white;
 }
 .titleBar {
-  font-size: 5vw;
+  font-size: 20px;
+}
+@media screen and (min-width: 1200px) {
+  div {
+    font-size: 5vw;
+  }
 }
 </style>

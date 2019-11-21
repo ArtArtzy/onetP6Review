@@ -308,7 +308,7 @@ export default {
 }
 @media screen and (min-width: 1200px) {
   div {
-    font-size: 1vw;
+    font-size: 20.5px;
   }
 }
 </style>

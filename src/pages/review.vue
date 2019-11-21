@@ -1006,7 +1006,7 @@
                       style="width:100%"
                     >
                       <img
-                        :src="this.questionList[questionNo-1].answer2URL"
+                        :src="this.questionList[questionNo-1].answer3URL"
                         alt
                         class="sizeimg q-pa-md"
                       />

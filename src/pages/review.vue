@@ -1183,7 +1183,7 @@
               <div style="max-width:100px;width:100%"></div>
               <div class="q-pt-sm" align="center">
                 คะแนนปัจจุบัน
-                {{totalScore}}
+                {{totalScore.toFixed(0)}}
               </div>
               <div align="right">
                 <q-icon
@@ -3263,10 +3263,11 @@ export default {
 
         //update score
         this.totalScore -= 3;
+        this.scoreData[this.page - 1] -= 0.3;
         if (this.totalScore <= 0) {
           this.totalScore = 0;
+          this.scoreData[this.page - 1] = 0;
         } else {
-          this.scoreData[this.page - 1] -= 0.3;
           db.collection("reviewScore")
             .doc(this.studentData.studentId)
             .set({ score: this.scoreData });

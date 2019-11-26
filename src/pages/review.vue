@@ -128,7 +128,7 @@
               <div class="text-center q-pa-sm bg2" style="height:60px; border-radius: 5px;">
                 <span>คะแนนปัจจุบัน</span>
                 <br />
-                <span>{{totalScore}}</span>
+                <span>{{totalScore.toFixed(0)}}</span>
               </div>
             </div>
           </div>
@@ -3173,7 +3173,7 @@ export default {
         .get()
         .then(data => {
           this.scoreData = data.data().score;
-          this.totalScore = this.scoreData[this.page - 1] * 10;
+          this.totalScore = Math.round(this.scoreData[this.page - 1] * 10);
           this.totalAllScore =
             this.scoreData.reduce((total, num) => {
               return total + num;
@@ -3260,6 +3260,17 @@ export default {
         this.userAnswer.push(dataTemp);
         this.showMark[dataTemp.correctAnswer - 1] = 1;
         this.showMark[dataTemp.userAnswer - 1] = 2;
+
+        //update score
+        this.totalScore -= 3;
+        if (this.totalScore <= 0) {
+          this.totalScore = 0;
+        } else {
+          this.scoreData[this.page - 1] -= 0.3;
+          db.collection("reviewScore")
+            .doc(this.studentData.studentId)
+            .set({ score: this.scoreData });
+        }
       }
       this.answerMode = true;
       if (this.questionNo >= 5) {

@@ -22,7 +22,7 @@ Vue.use(VueRouter)
 Vue.mixin({
   data() {
     return {
-      version: "1.0.8",
+      version: "1.0.9",
     };
   },
   methods: {

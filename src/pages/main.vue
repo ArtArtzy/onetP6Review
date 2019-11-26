@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-6 relative-position">
                   <div class="absolute-center" style="width:100%">
-                    <div class="row justify-center">
+                    <div class="row">
                       <q-icon
                         size="sm"
                         name="fas fa-star"

@@ -54,7 +54,7 @@
                   <br />
                   <div class="text-h4">คะแนนสะสม</div>
                   <br />
-                  <div class="text-h3">{{totalScore}}</div>
+                  <div class="text-h3">{{totalNum}}</div>
                 </div>
               </div>
             </div>
@@ -129,7 +129,7 @@
             <div class="text-center">
               <span class="textTitle">คะแนนสะสม</span>
               <br />
-              <span class="title">{{totalScore}}</span>
+              <span class="title">{{totalNum}}</span>
             </div>
           </div>
         </div>
@@ -195,6 +195,7 @@ export default {
       studentData: this.$q.localStorage.getItem("studentData"),
       scoreData: [],
       totalScore: 0,
+      totalNum: 0,
       star1: 10,
       star2: 20,
       star3: 40,
@@ -236,6 +237,7 @@ export default {
             this.scoreData.reduce((total, num) => {
               return total + num;
             }) * 10;
+          this.totalNum = this.totalScore.toFixed(0);
         });
     },
     startBtn() {

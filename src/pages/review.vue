@@ -1652,7 +1652,7 @@
                     <div class="text-center q-pt-xs bg2" style="height:60px; border-radius: 5px;">
                       <span>คะแนนปัจจุบัน</span>
                       <br />
-                      <span>{{totalScore}}</span>
+                      <span>{{totalScore.toFixed(0)}}</span>
                     </div>
                   </div>
                 </div>
@@ -2809,7 +2809,7 @@
                 </div>
                 <div class="q-px-sm">
                   คะแนนปัจจุบัน
-                  <span>{{totalScore}}</span>
+                  <span>{{totalScore.toFixed(0)}}</span>
                 </div>
               </div>
             </div>
